@@ -1,0 +1,26 @@
+lokasi
+
+D:\YOUTUBE\WEBSITE YOUTUBE UGI PAKAI GITHUB
+
+
+
+
+saya ingin menambah materi pada bagian "PLS-SEM / SmartPLS" dengan Judul "PLS-SEM dengan Software SmartPLS, Kasus Second Order Reflektif-Reflektif dengan Pendekatan Penyelesaian Two-Step Approach"
+
+Beberapa informasinya sebagai berikut
+
+
+Variabel: Budaya Organisasi (Second Order Reflektif-Reflektif), Kinerja (Second Order Reflektif-Reflektif) (Penyelesaian dengan Pendekatan Two-Step Approach)
+Software: SmartPLS
+Jumlah Responden: 189
+Jumlah Item Pertanyaan: 16
+Ringkasan Hasil: Valid, Reliabel, Berpengaruh Semua
+Link Youtube: https://www.youtube.com/watch?v=GnrA_yFMskY
+Link Bahan (Data Excel + File PDF + File Project SmartPLS): https://lynk.id/statkomat/4zDNBR8
+
+
+
+
+file gambar nya berada pada folder dengan nama "topik pls sem smartpls" dan didalam folder tersebut, file gambarnya dengan nama "cover youtube 2.png"
+
+saya berikan kode html nya....berikan Kembali kode html yang sudah anda update
