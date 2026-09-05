@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sharing</title>
+
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./tombol_css.css">
+
+  <!--
+    IMPORTANT:
+    This block is intentionally placed AFTER style.css and tombol_css.css
+    so it overrides any old .wrapper/body rules such as:
+      height: 100%;
+      height: 100vh;
+      overflow: hidden;
+      position: absolute;
+      top: 50%;
+      margin-top: -...
+  -->
+  <style>
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
+      height: auto !important;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      overflow-y: auto !important;
+    }
+
+    body {
+      position: relative;
+    }
+
+    /* MAIN FIX: let the wrapper grow with its content */
+    .wrapper {
+      position: relative !important;
+      top: auto !important;
+      right: auto !important;
+      bottom: auto !important;
+      left: auto !important;
+
+      width: 100% !important;
+      height: auto !important;
+      min-height: 100vh !important;
+
+      margin: 0 !important;
+      padding: 0 !important;
+
+      overflow: visible !important;
+    }
+
+    /*
+      Put real page content above the decorative bubbles.
+      This also prevents the animation layer from blocking clicks/scrolling.
+    */
+    .page-content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      min-height: 100vh;
+      padding-bottom: 80px;
+    }
+
+    /*
+      Keep background bubbles decorative only.
+      fixed = bubbles stay in the viewport and no longer determine
+      the height of the page.
+    */
+    .bg-bubbles {
+      position: fixed !important;
+      top: 0 !important;
+      right: 0 !important;
+      bottom: 0 !important;
+      left: 0 !important;
+
+      width: 100% !important;
+      height: 100vh !important;
+
+      margin: 0 !important;
+      padding: 0 !important;
+
+      overflow: hidden !important;
+      pointer-events: none !important;
+      z-index: 0 !important;
+    }
+
+    a:link,
+    a:visited {
+      text-decoration: none;
+    }
+
+    a:hover,
+    a:active {
+      text-decoration: underline;
+    }
+
+    .nav-table {
+      width: 100%;
+      min-height: 50px;
+      border-collapse: collapse;
+    }
+
+    .nav-links {
+      text-align: left;
+      vertical-align: middle;
+      padding: 18px 10px;
+      font-family: "Comic Sans MS", "Chalkboard SE", "Comic Neue", sans-serif;
+    }
+
+    .nav-links a {
+      color: #ff4500;
+    }
+
+    .sharing-content {
+      width: min(70%, 1000px);
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .sharing-title {
+      text-align: center;
+      font-size: clamp(42px, 7vw, 80px);
+      margin: 25px 0 40px;
+      line-height: 1.1;
+    }
+
+    .sharing-item {
+      margin: 0 auto 70px;
+      text-align: left;
+    }
+
+    .sharing-item img {
+      display: block;
+      width: min(500px, 100%);
+      height: auto;
+      max-width: 100%;
+    }
+
+    .download-material {
+      display: inline-block;
+      margin-top: 8px;
+      color: #adff2f !important;
+      font-size: 20px;
+      font-family: "Comic Sans MS", "Chalkboard SE", "Comic Neue", sans-serif;
+    }
+
+    /*
+      This spacer replaces dozens of <br> tags.
+      Change the value if you intentionally need more space at the bottom.
+    */
+    .bottom-space {
+      height: 220px;
+    }
+
+    @media (max-width: 768px) {
+      .sharing-content {
+        width: 90%;
+      }
+
+      .nav-table td:first-child,
+      .nav-table td:nth-child(2) {
+        width: 0;
+      }
+
+      .nav-table td:last-child {
+        width: 100%;
+      }
+
+      .nav-links {
+        text-align: center;
+        line-height: 2;
+      }
+    }
+
+
+    /* =====================================================
+       STATCAL CERTIFICATE VERIFICATION
+       ===================================================== */
+    .certificate-verification {
+      margin: 34px 0 10px;
+      padding: 26px;
+      border: 2px solid rgba(227, 255, 0, 0.92);
+      border-radius: 24px;
+      background: linear-gradient(145deg, rgba(0, 28, 78, 0.78), rgba(0, 52, 115, 0.58));
+      box-shadow: 0 18px 42px rgba(0, 0, 0, 0.28);
+      color: #fff;
+      font-family: "Comic Sans MS", "Chalkboard SE", "Comic Neue", sans-serif;
+    }
+
+    .certificate-verification h2 {
+      margin: 0 0 8px;
+      color: #e3ff00;
+      font-size: 30px;
+      line-height: 1.2;
+      text-align: center;
+    }
+
+    .certificate-verification .cert-lead {
+      max-width: 760px;
+      margin: 0 auto 22px;
+      text-align: center;
+      font-size: 16px;
+      line-height: 1.55;
+    }
+
+    .cert-search-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    .cert-input {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 14px 16px;
+      border: 2px solid rgba(255,255,255,.55);
+      border-radius: 14px;
+      outline: none;
+      background: rgba(255,255,255,.96);
+      color: #0b2f78;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: .2px;
+    }
+
+    .cert-input:focus {
+      border-color: #e3ff00;
+      box-shadow: 0 0 0 3px rgba(227,255,0,.18);
+    }
+
+    .cert-button,
+    .cert-action-button {
+      border: 0;
+      border-radius: 14px;
+      cursor: pointer;
+      font-family: inherit;
+      font-weight: 900;
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+
+    .cert-button {
+      padding: 14px 20px;
+      background: #e3ff00;
+      color: #0b2f78;
+      font-size: 16px;
+      box-shadow: 0 10px 22px rgba(0,0,0,.22);
+    }
+
+    .cert-button:hover,
+    .cert-action-button:hover {
+      transform: translateY(-2px);
+    }
+
+    .cert-example {
+      max-width: 780px;
+      margin: 9px auto 0;
+      color: rgba(255,255,255,.82);
+      font-size: 13px;
+    }
+
+    .cert-message {
+      display: none;
+      max-width: 780px;
+      margin: 18px auto 0;
+      padding: 14px 16px;
+      border-radius: 14px;
+      font-size: 15px;
+      line-height: 1.45;
+    }
+
+    .cert-message.show { display: block; }
+    .cert-message.success {
+      color: #eaffd4;
+      background: rgba(38, 166, 91, .20);
+      border: 1px solid rgba(124, 255, 167, .55);
+    }
+    .cert-message.error {
+      color: #ffe2e2;
+      background: rgba(220, 53, 69, .18);
+      border: 1px solid rgba(255, 143, 153, .55);
+    }
+
+    .cert-result-card {
+      display: none;
+      max-width: 780px;
+      margin: 20px auto 0;
+      padding: 20px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.96);
+      color: #0b2f78;
+      box-shadow: 0 16px 32px rgba(0,0,0,.20);
+    }
+
+    .cert-result-card.show { display: block; }
+    .cert-result-status {
+      color: #198754;
+      font-weight: 900;
+      font-size: 20px;
+      margin-bottom: 6px;
+    }
+    .cert-result-name {
+      font-size: 28px;
+      font-weight: 900;
+      margin-bottom: 3px;
+    }
+    .cert-result-role {
+      color: #536a92;
+      margin-bottom: 14px;
+    }
+    .cert-result-event {
+      font-size: 17px;
+      font-weight: 800;
+      line-height: 1.45;
+      margin-bottom: 14px;
+    }
+    .cert-result-meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px 18px;
+      padding-top: 14px;
+      border-top: 1px solid #d9e1ef;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+    .cert-result-meta strong { display:block; color:#0b2f78; }
+
+    .cert-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    .cert-action-button {
+      padding: 12px 16px;
+      font-size: 14px;
+    }
+    .cert-print-button { background:#0b2f78; color:#fff; }
+    .cert-reset-button { background:#eef3fb; color:#0b2f78; border:1px solid #cbd8ee; }
+
+    /* Printable certificate: hidden on the normal webpage. */
+    #certificatePrintable {
+      display: none;
+      box-sizing: border-box;
+      width: 100%;
+      min-height: 680px;
+      padding: 38px 48px;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 8% 12%, rgba(25,118,210,.08), transparent 22%),
+        radial-gradient(circle at 92% 88%, rgba(242,140,40,.10), transparent 22%),
+        #ffffff;
+      color: #17365f;
+      border: 5px solid #123b6d;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    #certificatePrintable.ready { display: block; }
+
+    #certificatePrintable::before,
+    #certificatePrintable::after {
+      content: "";
+      position: absolute;
+      width: 230px;
+      height: 36px;
+      background: linear-gradient(90deg, #123b6d 0 58%, #1976d2 58% 82%, #f28c28 82% 100%);
+      transform: rotate(-42deg);
+      opacity: .98;
+    }
+    #certificatePrintable::before { left: -70px; top: 42px; }
+    #certificatePrintable::after { right: -70px; bottom: 42px; }
+
+    .print-cert-inner {
+      position: relative;
+      z-index: 2;
+      min-height: 590px;
+      border: 1.5px solid #b8c9df;
+      padding: 28px 44px 24px;
+      text-align: center;
+    }
+
+    .print-cert-brand {
+      font-size: 17px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      color: #1976d2;
+      margin-bottom: 10px;
+    }
+    .print-cert-title {
+      margin: 0;
+      color: #123b6d;
+      font-size: 38px;
+      letter-spacing: 1.5px;
+    }
+    .print-cert-kicker {
+      display: inline-block;
+      margin: 12px 0 18px;
+      padding: 7px 14px;
+      border-radius: 999px;
+      background: #f28c28;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: .6px;
+    }
+    .print-cert-given { color:#5f6f83; font-size:15px; margin-top:8px; }
+    .print-cert-name {
+      margin: 8px 0 10px;
+      color: #123b6d;
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 42px;
+      font-weight: 700;
+      line-height: 1.1;
+    }
+    .print-cert-rule {
+      width: 170px;
+      height: 3px;
+      margin: 0 auto 18px;
+      background: linear-gradient(90deg,#1976d2,#f28c28);
+      border-radius: 10px;
+    }
+    .print-cert-body {
+      max-width: 850px;
+      margin: 0 auto;
+      color:#364d68;
+      font-size: 16px;
+      line-height: 1.55;
+    }
+    .print-cert-event {
+      margin: 8px auto 10px;
+      color:#123b6d;
+      font-size: 20px;
+      font-weight: 900;
+      line-height: 1.35;
+    }
+    .print-cert-date {
+      margin-top: 10px;
+      color:#f28c28;
+      font-size:16px;
+      font-weight:900;
+    }
+    .print-cert-bottom {
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items:end;
+      margin-top: 30px;
+      text-align:left;
+    }
+    .print-cert-id-label,
+    .print-cert-sign-label { color:#6a7c92; font-size:12px; text-transform:uppercase; letter-spacing:.8px; }
+    .print-cert-id-value { margin-top:5px; color:#123b6d; font-size:15px; font-weight:900; }
+    .print-cert-verify { margin-top:6px; color:#60758e; font-size:12px; }
+    .print-cert-sign { text-align:center; }
+    .print-cert-sign-space { height:46px; }
+    .print-cert-signer { color:#123b6d; font-size:17px; font-weight:900; border-top:1px solid #6e8098; padding-top:7px; }
+    .print-cert-role { color:#60758e; font-size:13px; font-style:italic; margin-top:3px; }
+    .print-cert-footer {
+      position:absolute;
+      left:44px;
+      right:44px;
+      bottom:13px;
+      color:#6c7f95;
+      font-size:11px;
+      text-align:center;
+    }
+
+    @media (max-width: 768px) {
+      .cert-search-row { grid-template-columns: 1fr; }
+      .cert-button { width:100%; }
+      .cert-result-meta { grid-template-columns: 1fr; }
+      .certificate-verification { padding:20px 16px; }
+      .certificate-verification h2 { font-size:25px; }
+    }
+
+    @media print {
+      @page { size: A4 landscape; margin: 0; }
+      html, body { width: 297mm !important; height: 210mm !important; background:#fff !important; }
+      body * { visibility: hidden !important; }
+      #certificatePrintable,
+      #certificatePrintable * { visibility: visible !important; }
+      #certificatePrintable {
+        display: block !important;
+        position: absolute !important;
+        left: 0 !important;
+        top: 0 !important;
+        width: 297mm !important;
+        height: 210mm !important;
+        min-height: 210mm !important;
+        margin: 0 !important;
+        padding: 12mm 14mm !important;
+        border-width: 3mm !important;
+        box-shadow: none !important;
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+      }
+      .print-cert-inner {
+        min-height: 174mm !important;
+        padding: 9mm 12mm 7mm !important;
+      }
+      .print-cert-title { font-size: 31pt !important; }
+      .print-cert-name { font-size: 34pt !important; }
+      .print-cert-event { font-size: 16pt !important; }
+      .print-cert-body { font-size: 12pt !important; }
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="wrapper">
+
+    <!-- REAL CONTENT -->
+    <div class="page-content">
+
+      <!-- NAVIGATION -->
+      <table class="nav-table" border="0">
+        <tr>
+          <td style="width:33%;"></td>
+          <td style="width:15%;"></td>
+
+          <td style="width:52%;" class="nav-links">
+            <a href="index.html">Home</a> |
+            <a href="material.html">Material</a> |
+            <a href="team.html">Team</a> |
+            <a href="statcal online.html">STATCAL with Online Version</a> |
+            <a href="donasi.html">Donation</a>
+          </td>
+        </tr>
+      </table>
+
+      <!-- SHARING CONTENT -->
+      <main class="sharing-content">
+
+        <h1 class="sharing-title">Sharing</h1>
+
+        <section class="sharing-item">
+          <img
+            src="2025 16 Agustus, Univ Bengkulu.jpg"
+            alt="Sharing activity at Universitas Bengkulu"
+          >
+
+          <a
+            class="download-material"
+            href="https://drive.google.com/drive/folders/1Pf-umJ4sBg0VnRkNwE820jvvjx73cmAO?usp=sharing"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Download Material
+          </a>
+        </section>
+
+        <section class="sharing-item">
+          <img
+            src="flyer statcal online 10 agustus 2026.png"
+            alt="STATCAL ONLINE flyer 10 August 2026"
+          >
+        </section>
+
+        <section class="sharing-item">
+          <img
+            src="flyer ugi statcal online 22 agustus 2026.png"
+            alt="STATCAL ONLINE flyer 22 August 2026"
+          >
+          
+          
+          
+          
+          
+          <br>
+          
+          
+          
+          
+                 <img
+            src="foto zoom 1 statcal 22 agustus 2026.png" 
+            alt=""
+          >
+          
+          
+     
+          
+         
+          
+          
+          
+          
+          
+          <a
+            class="download-material"
+            href="https://docs.google.com/presentation/d/1W67482irm1wuYXOKZYrp-o1V4gT-n2ul/edit?usp=sharing&ouid=100862880665495647403&rtpof=true&sd=true"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Material in PowerPoint
+          </a>
+          
+          
+          
+          
+          
+          
+          
+          
+          <br>
+          
+          <a
+            class="download-material"
+            href="STATCAL_Workshop_Online_Materials.html"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Material in Web
+          </a>
+
+          <!-- CERTIFICATE VERIFICATION: 22 AUGUST 2026 -->
+          <div class="certificate-verification" id="certificate-verification-20260822">
+            <h2>STATCAL Certificate Verification</h2>
+            <p class="cert-lead">
+              Participants of this activity can verify the authenticity of their certificate by entering the Certificate ID printed on the certificate.
+            </p>
+
+            <div class="cert-search-row">
+              <input
+                id="statcalCertificateIdInput"
+                class="cert-input"
+                type="text"
+                placeholder="Example: STATCAL-WS-20260822-001"
+                autocomplete="off"
+                maxlength="40"
+                aria-label="Certificate ID"
+              >
+              <button id="statcalVerifyCertificateButton" class="cert-button" type="button">
+                Verify Certificate
+              </button>
+            </div>
+
+            <div class="cert-example">
+              Example Certificate ID: <strong>STATCAL-WS-20260822-001</strong>
+            </div>
+
+            <div id="statcalCertificateMessage" class="cert-message" role="status" aria-live="polite"></div>
+
+            <div id="statcalCertificateResult" class="cert-result-card">
+              <div class="cert-result-status">✓ CERTIFICATE VERIFIED</div>
+              <div id="certResultName" class="cert-result-name">—</div>
+              <div class="cert-result-role">Participant</div>
+              <div class="cert-result-event">
+                Web Scraping, Pembersihan Data Teks, dan Klasifikasi Sentimen dengan STATCAL ONLINE
+              </div>
+
+              <div class="cert-result-meta">
+                <div>
+                  <strong>Date of Activity</strong>
+                  22 August 2026
+                </div>
+                <div>
+                  <strong>Certificate ID</strong>
+                  <span id="certResultId">—</span>
+                </div>
+                <div>
+                  <strong>Issued by</strong>
+                  Prana Ugiana Gio<br>
+                  <em>Founder &amp; CEO, STATCAL</em>
+                </div>
+                <div>
+                  <strong>Organized by</strong>
+                  STATCAL — Statistical Calculator<br>
+                  www.statcal.com
+                </div>
+              </div>
+
+              <div class="cert-actions">
+                <button id="statcalPrintCertificateButton" class="cert-action-button cert-print-button" type="button">
+                  Print / Save as PDF
+                </button>
+                <button id="statcalResetCertificateButton" class="cert-action-button cert-reset-button" type="button">
+                  Check Another ID
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Printable A4 Landscape Certificate -->
+          <div id="certificatePrintable" aria-hidden="true">
+            <div class="print-cert-inner">
+              <div class="print-cert-brand">STATCAL · STATISTICAL CALCULATOR</div>
+              <h2 class="print-cert-title">CERTIFICATE OF PARTICIPATION</h2>
+              <div class="print-cert-kicker">LOKAKARYA PRAKTIK · 100% HANDS-ON</div>
+
+              <div class="print-cert-given">Diberikan kepada</div>
+              <div id="printCertificateName" class="print-cert-name">NAMA PESERTA</div>
+              <div class="print-cert-rule"></div>
+
+              <div class="print-cert-body">
+                atas partisipasinya sebagai <strong>Peserta</strong> dalam kegiatan
+                <div class="print-cert-event">
+                  Web Scraping, Pembersihan Data Teks, dan Klasifikasi Sentimen dengan STATCAL ONLINE
+                </div>
+                yang diselenggarakan oleh STATCAL dengan pendekatan praktik langsung.
+                <div class="print-cert-date">Sabtu, 22 Agustus 2026</div>
+              </div>
+
+              <div class="print-cert-bottom">
+                <div>
+                  <div class="print-cert-id-label">Certificate ID</div>
+                  <div id="printCertificateId" class="print-cert-id-value">—</div>
+                  <div class="print-cert-verify">Verify at: www.statcal.com/sharing%20statcal.html</div>
+                </div>
+
+                <div class="print-cert-sign">
+                  <div class="print-cert-sign-label">Issued by</div>
+                  <div class="print-cert-sign-space"></div>
+                  <div class="print-cert-signer">Prana Ugiana Gio</div>
+                  <div class="print-cert-role">Founder &amp; CEO, STATCAL</div>
+                </div>
+              </div>
+
+              <div class="print-cert-footer">
+                Organized by STATCAL — Statistical Calculator · www.statcal.com
+              </div>
+            </div>
+          </div>
+
+          
+          
+          
+          
+          
+          
+          
+        </section>
+
+        <div class="container"></div>
+
+        <div class="bottom-space"></div>
+
+      </main>
+    </div>
+
+    <!-- DECORATIVE BACKGROUND ONLY -->
+    <ul class="bg-bubbles" aria-hidden="true">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+
+  </div>
+
+
+
+  <script>
+  (function () {
+    const certificates = {
+      "STATCAL-WS-20260822-001": { name: "Syathir Sofyan" },
+      "STATCAL-WS-20260822-002": { name: "Shintami Rouwelvia Malik" },
+      "STATCAL-WS-20260822-003": { name: "Dadang Saepuloh" },
+      "STATCAL-WS-20260822-004": { name: "Siti Nurlatifah" },
+      "STATCAL-WS-20260822-005": { name: "Rodyah Widyarini" }
+    };
+
+    const input = document.getElementById("statcalCertificateIdInput");
+    const verifyBtn = document.getElementById("statcalVerifyCertificateButton");
+    const message = document.getElementById("statcalCertificateMessage");
+    const result = document.getElementById("statcalCertificateResult");
+    const resultName = document.getElementById("certResultName");
+    const resultId = document.getElementById("certResultId");
+    const printArea = document.getElementById("certificatePrintable");
+    const printName = document.getElementById("printCertificateName");
+    const printId = document.getElementById("printCertificateId");
+    const printBtn = document.getElementById("statcalPrintCertificateButton");
+    const resetBtn = document.getElementById("statcalResetCertificateButton");
+
+    let currentCertificate = null;
+
+    function normalizeId(value) {
+      return String(value || "").trim().toUpperCase();
+    }
+
+    function showMessage(text, type) {
+      message.textContent = text;
+      message.className = "cert-message show " + type;
+    }
+
+    function clearMessage() {
+      message.textContent = "";
+      message.className = "cert-message";
+    }
+
+    function verifyCertificate() {
+      const id = normalizeId(input.value);
+      clearMessage();
+      result.classList.remove("show");
+      printArea.classList.remove("ready");
+      currentCertificate = null;
+
+      if (!id) {
+        showMessage("Please enter your Certificate ID.", "error");
+        input.focus();
+        return;
+      }
+
+      const certificate = certificates[id];
+      if (!certificate) {
+        showMessage("Certificate ID Not Found. Please check the ID and try again.", "error");
+        return;
+      }
+
+      currentCertificate = { id: id, name: certificate.name };
+      resultName.textContent = certificate.name;
+      resultId.textContent = id;
+      printName.textContent = certificate.name;
+      printId.textContent = id;
+      printArea.classList.add("ready");
+      result.classList.add("show");
+      showMessage("Certificate successfully verified in the official STATCAL certificate list.", "success");
+
+      setTimeout(function () {
+        result.scrollIntoView({ behavior: "smooth", block: "center" });
+      }, 80);
+    }
+
+    function resetCertificate() {
+      currentCertificate = null;
+      input.value = "";
+      clearMessage();
+      result.classList.remove("show");
+      printArea.classList.remove("ready");
+      input.focus();
+    }
+
+    function printCertificate() {
+      if (!currentCertificate) {
+        showMessage("Please verify a valid Certificate ID before printing.", "error");
+        return;
+      }
+      window.print();
+    }
+
+    verifyBtn.addEventListener("click", verifyCertificate);
+    printBtn.addEventListener("click", printCertificate);
+    resetBtn.addEventListener("click", resetCertificate);
+
+    input.addEventListener("keydown", function (event) {
+      if (event.key === "Enter") verifyCertificate();
+    });
+  })();
+  </script>
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="./script.js"></script>
+</body>
+</html>

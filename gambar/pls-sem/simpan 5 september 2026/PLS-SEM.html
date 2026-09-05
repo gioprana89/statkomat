@@ -1,0 +1,3974 @@
+<html>
+
+
+
+
+<head>
+
+
+    <title>PLS-SEM</title>
+    
+    
+    </head>
+    
+
+
+
+
+
+
+
+
+
+
+<style>
+
+
+    nav{
+        background-color: #87cefa;
+    }
+    nav ul {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        position: relative;
+    }
+    nav ul li{
+        display: inline-block;
+        background-color: #87cefa;
+    }
+    nav a{
+        display: block;
+        line-height: 40px;
+        font-size: 14px;
+        padding: 0 10px;
+        color: #000080;
+        text-decoration: none;
+    }
+    /* Hide Dropdown by Default*/
+    nav ul ul {
+        display: none;
+        position: absolute;
+        top: 40px;
+    }
+    /* hover */
+    nav a:hover{
+        background-color: #ff4500;
+    }
+    /* Display Dropdown on Hover */
+    nav ul li:hover > ul {
+        display: inherit;
+    }
+    /* Fisrt Tier Dropdown */
+    nav ul ul li{
+        width: 170px;
+        position: relative;
+        float: none;
+        display: list-item;
+    
+    }
+    /* ============ Second, Third and More Tiers ===========*/
+    nav ul ul ul li {
+        position: relative;
+        left: 170px;
+        top: -40px;
+    }
+    /* Change this in order to change the Dropdown symbol */
+    li > a::after { content: ' +';}
+    li > a:only-child::after {
+        content: '';
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    a:link {
+      text-decoration: none;
+    }
+    
+    a:visited {
+      text-decoration: none;
+    }
+    
+    a:hover {
+      text-decoration: underline;
+    }
+    
+    a:active {
+      text-decoration: underline;
+    }
+    
+    </style>
+    
+    
+    
+    
+    
+
+
+
+
+    <center>
+        <table width = "1200px" border = "0">
+            <tr>
+                <td>
+        
+        
+             
+        
+        
+        
+        
+        
+        
+        <p style="text-align:justify">
+        
+            <font style="color:orange; text-align: justify; font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', sans-serif;">
+                    <font size = 6>
+            
+             
+                    <center>
+            
+              Tutorial Pembelajaran Partial Least Squares Structural Equation Modeling (PLS-SEM) dengan Software SmartPLS, WarpPLS, JASP & R 
+
+              
+        
+            </center>
+            
+                    </font>
+            </font>
+            </p>	
+            
+            
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+                </td>
+        
+        
+                </tr>
+        </table>
+        </center>
+        
+        
+
+
+
+
+<br>
+<br><br><br><br>
+
+
+
+
+
+
+
+<p style="text-align:justify">
+
+    <font style="color:blue; text-align: justify; font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', sans-serif;">
+            <font size = 12>
+    
+     
+            <center>
+    
+      
+           Software SmartPLS
+    
+            </center></font></font></p>
+
+
+            <br>
+
+
+
+
+
+
+
+
+
+
+
+
+<center>
+    <table width = 1040 border = 0>
+        <tr>
+            <td width = 500px valign = "top">
+                
+              <center>  
+          <a href = "https://youtu.be/2D_p0cHN9zs" target = "_blank">
+    <img src = "gambar/Cover Youtube Bedah Ebook PLS SEM, part 1.png" width = "500px"></img>
+</a>
+</center>
+    
+    
+                
+                
+                
+    
+          </td>
+    
+    
+    
+          <td width = 40>
+    
+    </td>
+    
+    
+    
+    
+    
+    <td width = 500px valign = "top">
+        
+        
+        
+        <center>  
+            <a href = "https://youtu.be/ilFsphblFO4" target = "_blank">
+      <img src = "gambar/Cover Youtube Bedah Ebook PLS SEM, part 2.png" width = "500px"></img>
+  </a>
+  </center>
+      
+        
+        
+    
+    </td>
+    
+    
+    
+    
+    </tr></table></center>
+    
+    
+    
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+    <center>
+        <table width = 1040 border = 0>
+            <tr>
+                <td width = 500px valign = "top">
+                    
+                    <font style="color:blue; text-align: justify; font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', sans-serif;">
+                        <font size = 3>
+                
+                            <a href = "https://youtu.be/2D_p0cHN9zs" target = "_blank"><font color = "red">Link Youtube</font></a><br>
+                            <a href = "http://lynk.id/statkomat/epe3rmk633qw" target = "_blank"><font color = "red">Link Bahan</font></a>
+
+
+
+
+
+                        </font></font>        
+        
+              </td>
+        
+        
+        
+              <td width = 40>
+        
+        </td>
+        
+        
+        
+        
+        
+        <td width = 500px valign = "top">
+            
+            
+            <font style="color:blue; text-align: justify; font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', sans-serif;">
+                <font size = 3>
+        
+ 
+                                   <a href = "https://youtu.be/ilFsphblFO4" target = "_blank"><font color = "red">Link Youtube</font></a><br>
+                            <a href = "http://lynk.id/statkomat/epe3rmk633qw" target = "_blank"><font color = "red">Link Bahan</font></a>
+
+
+
+
+                </font></font>    
+            
+            
+        
+        </td>
+        
+        
+        
+        
+        </tr></table></center>
+
+
+
+
+
+
+
+
+
+<br><br><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<center>
+    <table width = 1040 border = 0>
+        <tr>
+            <td width = 500px valign = "top">
+                
+              <center>  
+          <a href = "https://youtu.be/D4w8C2xBMmk?si=wi-nAGN2mHZhW-96" target = "_blank">
+    <img src = "gambar/COVER PLS SEM SECOND ORDER KASUS 1.png" width = "500px"></img>
+</a>
+</center>
+    
+    
+                
+                
+                
+    
+          </td>
+    
+    
+    
+          <td width = 40>
+    
+    </td>
+    
+    
+    
+    
+    
+    <td width = 500px valign = "top">
+        
+        
+        
+        <center>  
+            <a href = "https://youtu.be/GnrA_yFMskY?si=iPp0wAMUTr__4FQ1" target = "_blank">
+      <img src = "gambar/Bedah Ebook PLS SEM Second Order, Kasus 2.png" width = "500px"></img>
+  </a>
+  </center>
+      
+        
+        
+    
+    </td>
+    
+    
+    
+    
+    </tr></table></center>
+    
+    
+    
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+    <center>
+        <table width = 1040 border = 0>
+            <tr>
+                <td width = 500px valign = "top">
+                    
+                    <font style="color:blue; text-align: justify; font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', sans-serif;">
+                        <font size = 3>
+                
+         
+                            Variabel: <font color = "orange">Budaya Organisasi (Second Order Reflektif-Reflektif), Kinerja (Second Order Reflektif-Reflektif) (Penyelesaian dengan Pendekatan Repeated Indicators)</font><br>
+                            Software: <font color = "orange">SmartPLS</font> <br>
+                            Jumlah Responden: <font color = "orange">189</font><br>
+                            Jumlah Item Pertanyaan: <font color = "orange">16</font><br>
+                            Ringkasan Hasil: <font color = "orange">Valid, Reliabel, Berpengaruh Semua</font><br>
+                            <a href = "https://youtu.be/D4w8C2xBMmk" target = "_blank"><font color = "red">Link Youtube</font></a><br>
+                            <a href = "http://lynk.id/statkomat/68KNaxv" target = "_blank"><font color = "red">Link Bahan (Data Excel + File PDF + File Project SmartPLS)</font></a>
+
+
+
+
+
+                        </font></font>        
+        
+              </td>
+        
+        
+        
+              <td width = 40>
+        
+        </td>
+        
+        
+        
+        
+        
+        <td width = 500px valign = "top">
+            
+            
+            <font style="color:blue; text-align: justify; font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', sans-serif;">
+                <font size = 3>
+        
+ 
+                    Variabel: <font color = "orange">Budaya Organisasi (Second Order Reflektif-Reflektif), Kinerja (Second Order Reflektif-Reflektif) (Penyelesaian dengan Pendekatan Two-Step Approach)</font><br>
+                    Software: <font color = "orange">SmartPLS</font> <br>
+                    Jumlah Responden: <font color = "orange">189</font><br>
+                    Jumlah Item Pertanyaan: <font color = "orange">16</font><br>
+                    Ringkasan Hasil: <font color = "orange">Valid, Reliabel, Berpengaruh Semua</font><br>
+                    <a href = "https://youtu.be/GnrA_yFMskY?si=iPp0wAMUTr__4FQ1" target = "_blank"><font color = "red">Link Youtube</font></a><br>
+                    <a href = "https://lynk.id/statkomat/4zDNBR8" target = "_blank"><font color = "red">Link Bahan (Data Excel  + File PDF + File Project SmartPLS)</font></a>
+
+
+
+                </font></font>    
+            
+            
+        
+        </td>
+        
+        
+        
+        
+        </tr></table></center>
+
+
+
+
+
+
+
+
+
+<br><br><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<center>
+    <table width = 1040 border = 0>
+        <tr>
+            <td width = 500px valign = "top">
+                
+              <center>  
+          <a href = "https://youtu.be/7JqDUH4l7Fw?si=--IP306VkB0K7soo" target = "_blank">
+    <img src = "gambar/PLS SEM Kasus 3 Second Order.png" width = "500px"></img>
+</a>
+</center>
+    
+    
+                
+                
+                
+    
+          </td>
+    
+    
+    
+          <td width = 40>
+    
+    </td>
+    
+    
+    
+    
+    
+    <td width = 500px valign = "top">
+        
+        <center>  
+            <a href = "https://youtu.be/kn01kNqlro8?si=c-LEfl6bi_6E1h92" target = "_blank">
+      <img src = "gambar/cover pls sem second order kasus 4.png" width = "500px"></img>
+  </a>
+  </center>
+      
+        
+    
+    </td>
+    
+    
+    
+    
+    </tr></table></center>
+    
+    
+    
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+    <center>
+        <table width = 1040 border = 0>
+            <tr>
+                <td width = 500px valign = "top">
+                    
+                    <font style="color:blue; text-align: justify; font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', sans-serif;">
+                        <font size = 3>
+                
+         
+                            Variabel: <font color = "orange">Budaya Organisasi (Second Order Reflektif-Formatif), Kinerja (Second Order Reflektif-Formatif) (Penyelesaian dengan Pendekatan Two-Step Approach)</font><br>
+                            Software: <font color = "orange">SmartPLS</font> <br>
+                            Jumlah Responden: <font color = "orange">189</font><br>
+                            Jumlah Item Pertanyaan: <font color = "orange">16</font><br>
+                            Ringkasan Hasil: <font color = "orange">Valid, Reliabel, Berpengaruh Semua</font><br>
+                            <a href = "https://youtu.be/7JqDUH4l7Fw?si=eLfsdeM9cwEludAN" target = "_blank"><font color = "red">Link Youtube</font></a><br>
+                            <a href = "https://lynk.id/statkomat/QxP9pDQ" target = "_blank"><font color = "red">Link Bahan (Data Excel + File PDF + File Project SmartPLS)</font></a>
+
+
+
+
+                        </font></font>        
+        
+              </td>
+        
+        
+        
+              <td width = 40>
+        
+        </td>
+        
+        
+        
+        
+        
+        <td width = 500px valign = "top">
+            
+            
+            <font style="color:blue; text-align: justify; font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', sans-serif;">
+                <font size = 3>
+        
+ 
+
+
+
+                    Variabel: <font color = "orange">Budaya Organisasi (Second Order Formatif-Formatif), Kinerja (Second Order Formatif-Formatif) (Penyelesaian dengan Pendekatan Two-Step Approach)</font><br>
+                    Software: <font color = "orange">SmartPLS</font> <br>
+                    Jumlah Responden: <font color = "orange">189</font><br>
+                    Jumlah Item Pertanyaan: <font color = "orange">16</font><br>
+                    Ringkasan Hasil: <font color = "orange">Valid, Reliabel, Berpengaruh Semua</font><br>
+                    <a href = "https://youtu.be/kn01kNqlro8" target = "_blank"><font color = "red">Link Youtube</font></a><br>
+                    <a href = "http://lynk.id/statkomat/K5vZG1A" target = "_blank"><font color = "red">Link Bahan (Data Excel + File Word + File PDF + File Project SmartPLS)</font></a>
+                                        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </font></font>    
+            
+            
+        
+        </td>
+        
+        
+        
+        
+        </tr></table></center>
+
+
+
+
+
+
+
+
+
+<br><br><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<center>
+    <table width = 1040 border = 0>
+        <tr>
+            <td width = 500px valign = "top">
+                
+              <center>  
+          <a href = "https://youtu.be/tQ2WyFC3KOU?si=_HD-RrtrL5mF2Inh" target = "_blank">
+    <img src = "gambar/cover youtube kasus 1.png" width = "500px"></img>
+</a>
+</center>
+    
+    
+                
+                
+                
+    
+          </td>
+    
+    
+    
+          <td width = 40>
+    
+    </td>
+    
+    
+    
+    
+    
+    <td width = 500px valign = "top">
+        
+        
+
+       
+        <center>  
+            <a href = "https://youtu.be/UryX12ViY4Q?si=Ty34eIbtHlTBsLBd" target = "_blank">
+      <img src = "gambar/cover youtube smartpls 2.png" width = "500px"></img>
+  </a>
+  </center>
+      
+      
+
+
+
+
+
+
+
+
+
+
+
+    
+    </td>
+    
+    
+    
+    
+    </tr></table></center>
+    
+    
+    
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+    <center>
+        <table width = 1040 border = 0>
+            <tr>
+                <td width = 500px valign = "top">
+                    
+                    <font style="color:blue; text-align: justify; font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', sans-serif;">
+                        <font size = 3>
+                
+         
+                            Variabel: <font color = "orange">Partisipasi Manajemen (X1), Komitmen (X2), Budaya Organisasi (X3), Gaya Kepemimpinan (Moderasi), Kinerja Manajerial (Y)</font><br>
+                            Software: <font color = "orange">SmartPLS</font> <br>
+                            Jumlah Responden: <font color = "orange">97</font><br>
+                            Jumlah Item Pertanyaan: <font color = "orange">40</font><br>
+                            Ringkasan Hasil: <font color = "orange">Kasus Moderasi, Valid, Reliabel, Berpengaruh Semua, Memoderasi Semua</font><br>
+                            <a href = "https://youtu.be/tQ2WyFC3KOU?si=UtEW6n1VJW7GDs_P" target = "_blank"><font color = "red">Link Youtube</font></a><br>
+                            <a href = "https://lynk.id/statkomat/QxP9pDQ" target = "_blank"><font color = "red">Link Bahan (Data Excel + File Interpretasi dalam Word + Output SmartPLS: Outer Model (PLS Algorithm), Inner Model (Bootstrapping) + File Project SmartPLS Versi 4)</font></a>
+
+
+
+
+                        </font></font>        
+        
+              </td>
+        
+        
+        
+              <td width = 40>
+        
+        </td>
+        
+        
+        
+        
+        
+        <td width = 500px valign = "top">
+            
+            
+            <font style="color:blue; text-align: justify; font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', sans-serif;">
+                <font size = 3>
+        
+ 
+
+
+
+                    Variabel: <font color = "orange">Kualitas Produk (X1), Harga (X2), Lokasi (X3), Word of Mouth (Mediasi), Keputusan Pembelian (Y)</font><br>
+                    Software: <font color = "orange">SmartPLS</font> <br>
+                    Jumlah Responden: <font color = "orange">103</font><br>
+                    Jumlah Item Pertanyaan: <font color = "orange">30</font><br>
+                    Ringkasan Hasil: <font color = "orange">Kasus Mediasi, Valid, Reliabel, Berpengaruh Semua, Memediasi Semua</font><br>
+                    <a href = "https://youtu.be/UryX12ViY4Q?si=6FMelWogKNkqrVmU" target = "_blank"><font color = "red">Link Youtube</font></a><br>
+                    <a href = "https://lynk.id/statkomat/jWxmdB7" target = "_blank"><font color = "red">Link Bahan (Data Excel + File Interpretasi dalam Word + Output SmartPLS: Outer Model (PLS Algorithm), Inner Model (Bootstrapping) + File Project SmartPLS Versi 4)</font></a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </font></font>    
+            
+            
+        
+        </td>
+        
+        
+        
+        
+        </tr></table></center>
+
+
+
+
+
+
+
+
+
+<br><br><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<center>
+    <table width = 1040 border = 0>
+        <tr>
+            <td width = 500px valign = "top">
+                
+              <center>  
+          <a href = "https://youtu.be/OQ6JH63b33E?si=1P57m3r25SwZDm1i" target = "_blank">
+    <img src = "gambar/cover smartpls youtube 3.png" width = "500px"></img>
+</a>
+</center>
+    
+    
+                
+                
+                
+    
+          </td>
+    
+    
+    
+          <td width = 40>
+    
+    </td>
+    
+    
+    
+    
+    
+    <td width = 500px valign = "top">
+        
+        
+
+       
+        <center>  
+            <a href = "https://youtu.be/u6X5bwNu8YE" target = "_blank">
+      <img src = "gambar/bedah PLS SEM.png" width = "500px"></img>
+  </a>
+  </center>
+      
+      
+
+
+
+
+
+
+
+
+
+
+    
+    </td>
+    
+    
+    
+    
+    </tr></table></center>
+    
+    
+    
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+    <center>
+        <table width = 1040 border = 0>
+            <tr>
+                <td width = 500px valign = "top">
+                    
+                    <font style="color:blue; text-align: justify; font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', sans-serif;">
+                        <font size = 3>
+                
+         
+                            Variabel: <font color = "orange">Beban Kerja (X), Stress Kerja (Mediasi), Kompensasi (Moderasi), Turnover Intention (Y)</font><br>
+                            Software: <font color = "orange">SmartPLS</font> <br>
+                            Jumlah Responden: <font color = "orange">73</font><br>
+                            Jumlah Item Pertanyaan: <font color = "orange">22</font><br>
+                            Ringkasan Hasil: <font color = "orange">Kasus Mediasi Moderasi, Valid, Reliabel, Berpengaruh Semua, Memoderasi & Memediasi</font><br>
+                            <a href = "https://youtu.be/OQ6JH63b33E?si=5yCeDNEr4FErLjkO" target = "_blank"><font color = "red">Link Youtube</font></a><br>
+                            <a href = "https://lynk.id/statkomat/dzYZw8W" target = "_blank"><font color = "red">Link Bahan (Data Excel + File Interpretasi dalam Word + Output SmartPLS: Outer Model (PLS Algorithm), Inner Model (Bootstrapping) + File Project SmartPLS Versi 4)</font></a>
+
+
+
+
+                        </font></font>        
+        
+              </td>
+        
+        
+        
+              <td width = 40>
+        
+        </td>
+        
+        
+        
+        
+        
+        <td width = 500px valign = "top">
+            
+            
+            <font style="color:blue; text-align: justify; font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', sans-serif;">
+                <font size = 3>
+        
+ 
+
+
+
+                    <font style="color:blue; text-align: justify; font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', sans-serif;">
+                        <font size = 3>
+                
+         
+                            Video ini membahas secara detail perbedaan antara indikator reflective dan formative, dilengkapi referensi.<br>
+                            <a href = "https://youtu.be/u6X5bwNu8YE" target = "_blank"><font color = "red">Link Youtube</font></a><br>
+                            <a href = "https://lynk.id/statkomat/o8wm3v5e0r6r" target = "_blank"><font color = "red">Link Bahan (File Penjelasan PDF + 3 Ebook PLS-SEM)</font></a>
+
+
+
+
+                        </font></font>   
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </font></font>    
+            
+            
+        
+        </td>
+        
+        
+        
+        
+        </tr></table></center>
+
+
+
+
+
+
+
+
+
+<br><br><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<center>
+    <table width = 1040 border = 0>
+        <tr>
+            <td width = 500px valign = "top">
+                
+              <center>  
+          <a href = "https://youtu.be/3XoeGKu2hrc" target = "_blank">
+    <img src = "gambar/PLS SEM SmartPLS, Variabel dengan Jumlah Indikator 1, Single Item.png" width = "500px"></img>
+</a>
+</center>
+    
+    
+                
+                
+                
+    
+          </td>
+    
+    
+    
+          <td width = 40>
+    
+    </td>
+    
+    
+    
+    
+    
+    <td width = 500px valign = "top">
+        
+        
+
+
+   
+        <center>  
+            <a href = "https://youtu.be/savenj2pUoA" target = "_blank">
+      <img src = "gambar/bedah PLS SEM CMB.png" width = "500px"></img>
+  </a>
+  </center>
+      
+
+
+
+
+
+
+
+
+    
+    </td>
+    
+    
+    
+    
+    </tr></table></center>
+    
+    
+    
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+    <center>
+        <table width = 1040 border = 0>
+            <tr>
+                <td width = 500px valign = "top">
+                    
+            
+            <font style="color:blue; text-align: justify; font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', sans-serif;">
+                <font size = 3>
+        
+ 
+
+
+
+                    <font style="color:blue; text-align: justify; font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', sans-serif;">
+                        <font size = 3>
+                
+         
+                            Video ini membahas variabel dengan jumlah indikator sebanyak 1 atau single item atau single item. Juga dijelaskan, mengapa pada smartpls versi 4, tidak menyajikan nilai average variance extracted (AVE) dan composite reliability (CR), ketika jumlah indikator sebanyak 1.<br>
+                            <a href = "https://youtu.be/3XoeGKu2hrc" target = "_blank"><font color = "red">Link Youtube</font></a><br>
+                            <a href = "https://lynk.id/statkomat/p407v4zde50g" target = "_blank"><font color = "red">Link Bahan (File Penjelasan PDF + 4 Ebook PLS-SEM)</font></a>
+
+
+
+
+                        </font></font>   
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </font></font>    
+            
+        
+              </td>
+        
+        
+        
+              <td width = 40>
+        
+        </td>
+        
+        
+        
+        
+        
+        <td width = 500px valign = "top">
+            
+            
+
+            
+            <font style="color:blue; text-align: justify; font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', sans-serif;">
+                <font size = 3>
+        
+ 
+
+
+
+                    <font style="color:blue; text-align: justify; font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', sans-serif;">
+                        <font size = 3>
+                
+         
+                            Video ini membahas tentang common method bias (CMB). Kemudian dipraktekkan melakukan CMB di software smartPLS dan WarpPLS. Diberikan contoh kasus data yang terkena permasalahan CMB<br>
+                            <a href = "https://youtu.be/savenj2pUoA" target = "_blank"><font color = "red">Link Youtube</font></a><br>
+                            <a href = "https://lynk.id/statkomat/48wppwg3q43r" target = "_blank"><font color = "red">Link Bahan (File Penjelasan PDF + Data Excel + File Project SmartPLS dan WarpPLS + Ebook PLS-SEM + Artikel Jurnal)</font></a>
+
+
+
+
+                        </font></font>   
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </font></font>    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+        </td>
+        
+        
+        
+        
+        </tr></table></center>
+
+
+
+
+
+
+
+
+
+<br><br><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<center>
+    <table width = 1040 border = 0>
+        <tr>
+            <td width = 500px valign = "top">
+                
+              <center>  
+          <a href = "https://youtu.be/eAkeuz2wBjI" target = "_blank">
+    <img src = "gambar/Outer Loading 1.png" width = "500px"></img>
+</a>
+</center>
+    
+    
+                
+                
+                
+    
+          </td>
+    
+    
+    
+          <td width = 40>
+    
+    </td>
+    
+    
+    
+    
+    
+    <td width = 500px valign = "top">
+        
+        
+
+
+   
+        <center>  
+            <a href = "https://youtu.be/bQ-VN89Zs98" target = "_blank">
+      <img src = "gambar/Outer Loading 2.png" width = "500px"></img>
+  </a>
+  </center>
+      
+
+
+
+
+
+
+
+
+    
+    </td>
+    
+    
+    
+    
+    </tr></table></center>
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<center>
+    <table width = 1040 border = 0>
+        <tr>
+            <td width = 500px valign = "top">
+                
+              <center>  
+          <a href = "https://youtu.be/5pajezBSkvA" target = "_blank">
+    <img src = "gambar/Outer Loading 3.png" width = "500px"></img>
+</a>
+</center>
+    
+    
+                
+                
+                
+    
+          </td>
+    
+    
+    
+          <td width = 40>
+    
+    </td>
+    
+    
+    
+    
+    
+    <td width = 500px valign = "top">
+        
+        
+
+
+   
+        <center>  
+            <a href = "https://youtu.be/2QnmRog_CXo" target = "_blank">
+      <img src = "gambar/AVE 1.png" width= "500px"></img>
+  </a>
+  </center>
+      
+
+
+
+
+
+
+
+
+    
+    </td>
+    
+    
+    
+    
+    </tr></table></center>
+    
+    
+
+
+
+
+
+
+<br><br><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<center>
+    <table width = 1040 border = 0>
+        <tr>
+            <td width = 500px valign = "top">
+                
+              <center>  
+          <a href = "https://youtu.be/x5j7iON-dDk" target = "_blank">
+    <img src = "gambar/fsquare 1.png" width = "500px"></img>
+</a>
+</center>
+    
+    
+                
+                
+                
+    
+          </td>
+    
+    
+    
+          <td width = 40>
+    
+    </td>
+    
+    
+    
+    
+    
+    <td width = 500px valign = "top">
+        
+        
+
+
+   
+        <center>  
+            <a href = "https://youtu.be/muSoPmv1AZA" target = "_blank">
+      <img src = "gambar/qsquare 1.png" width= "500px"></img>
+  </a>
+  </center>
+      
+
+
+
+
+
+
+
+
+    
+    </td>
+    
+    
+    
+    
+    </tr></table></center>
+    
+    
+
+
+
+
+
+
+<br><br><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<center>
+    <table width = 1040 border = 0>
+        <tr>
+            <td width = 500px valign = "top">
+                
+              <center>  
+          <a href = "https://youtu.be/F4foM5rSsF8" target = "_blank">
+    <img src = "gambar/qsquare 2.png" width = "500px"></img>
+</a>
+</center>
+    
+    
+                
+                
+                
+    
+          </td>
+    
+    
+    
+          <td width = 40>
+    
+    </td>
+    
+    
+    
+    
+    
+    <td width = 500px valign = "top">
+        
+        
+
+
+   
+        <center>  
+            <a href = "https://youtu.be/wf2ECZFM18s" target = "_blank">
+      <img src = "gambar/composite 1.png" width= "500px"></img>
+  </a>
+  </center>
+      
+
+
+
+
+
+
+
+
+    
+    </td>
+    
+    
+    
+    
+    </tr></table></center>
+    
+    
+
+
+
+
+
+
+<br><br><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<center>
+    <table width = 1040 border = 0>
+        <tr>
+            <td width = 500px valign = "top">
+                
+              <center>  
+          <a href = "https://youtu.be/Exc4BEeUvvc" target = "_blank">
+    <img src = "gambar/composite 2.png" width = "500px"></img>
+</a>
+</center>
+    
+    
+                
+                
+                
+    
+          </td>
+    
+    
+    
+          <td width = 40>
+    
+    </td>
+    
+    
+    
+    
+    
+    <td width = 500px valign = "top">
+        
+        
+
+
+   
+        <center>  
+            <a href = "https://youtu.be/Nj51-LUUiCQ" target = "_blank">
+      <img src = "gambar/composite 3.png" width= "500px"></img>
+  </a>
+  </center>
+      
+
+
+
+
+
+
+
+
+    
+    </td>
+    
+    
+    
+    
+    </tr></table></center>
+    
+    
+
+
+
+
+
+
+<br><br><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<center>
+    <table width = 1040 border = 0>
+        <tr>
+            <td width = 500px valign = "top">
+                
+              <center>  
+          <a href = "https://youtu.be/7vGpmuKBPY0" target = "_blank">
+    <img src = "gambar/vif 1.png" width = "500px"></img>
+</a>
+</center>
+    
+    
+                
+                
+                
+    
+          </td>
+    
+    
+    
+          <td width = 40>
+    
+    </td>
+    
+    
+    
+    
+    
+    <td width = 500px valign = "top">
+        
+        
+
+
+   
+        <center>  
+            <a href = "https://youtu.be/gVDntTDjzKM" target = "_blank">
+      <img src = "gambar/trik signifikan 1.png" width= "500px"></img>
+  </a>
+  </center>
+      
+
+
+
+
+
+
+
+
+    
+    </td>
+    
+    
+    
+    
+    </tr></table></center>
+    
+    
+
+
+
+
+
+
+<br><br><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<center>
+    <table width = 1040 border = 0>
+        <tr>
+            <td width = 500px valign = "top">
+                
+              <center>  
+          <a href = "https://youtu.be/kwiPXsCyoVM" target = "_blank">
+    <img src = "gambar/trik signifikan 2.png" width = "500px"></img>
+</a>
+</center>
+    
+    
+                
+                
+                
+    
+          </td>
+    
+    
+    
+          <td width = 40>
+    
+    </td>
+    
+    
+    
+    
+    
+    <td width = 500px valign = "top">
+        
+        
+
+
+   
+        <center>  
+            <a href = "https://youtu.be/9RS1FL8DQ54" target = "_blank">
+      <img src = "gambar/sampel 1.png" width= "500px"></img>
+  </a>
+  </center>
+      
+
+
+
+
+
+
+
+
+    
+    </td>
+    
+    
+    
+    
+    </tr></table></center>
+    
+    
+
+
+
+
+
+
+<br><br><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<center>
+    <table width = 1040 border = 0>
+        <tr>
+            <td width = 500px valign = "top">
+                
+              <center>  
+          <a href = "https://youtu.be/s1yQrFNbSOk" target = "_blank">
+    <img src = "gambar/sampel 2.png" width = "500px"></img>
+</a>
+</center>
+    
+    
+                
+                
+                
+    
+          </td>
+    
+    
+    
+          <td width = 40>
+    
+    </td>
+    
+    
+    
+    
+    
+    <td width = 500px valign = "top">
+        
+        
+
+
+   
+        <center>  
+            <a href = "https://youtu.be/kc9mN1fJYas" target = "_blank">
+      <img src = "gambar/sampel 3.png" width= "500px"></img>
+  </a>
+  </center>
+      
+
+
+
+
+
+
+
+
+    
+    </td>
+    
+    
+    
+    
+    </tr></table></center>
+    
+    
+
+
+
+
+
+
+<br><br><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<center>
+    <table width = 1040 border = 0>
+        <tr>
+            <td width = 500px valign = "top">
+                
+              <center>  
+          <a href = "https://youtu.be/iBGjOXxwgU8" target = "_blank">
+    <img src = "gambar/formatif 1.png" width = "500px"></img>
+</a>
+</center>
+    
+    
+                
+                
+                
+    
+          </td>
+    
+    
+    
+          <td width = 40>
+    
+    </td>
+    
+    
+    
+    
+    
+    <td width = 500px valign = "top">
+        
+        
+
+
+   
+        <center>  
+            <a href = "https://youtu.be/vgx5gczC7gY" target = "_blank">
+      <img src = "gambar/trik signifikan 3.png" width= "500px"></img>
+  </a>
+  </center>
+      
+
+
+
+
+
+
+
+
+    
+    </td>
+    
+    
+    
+    
+    </tr></table></center>
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <br><br><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <center>
+        <table width = 1040 border = 0>
+            <tr>
+                <td width = 500px valign = "top">
+                    
+                  <center>  
+              <a href = "https://youtu.be/mOfT1Eg9UE4" target = "_blank">
+        <img src = "gambar/formatif 2.png" width = "500px"></img>
+    </a>
+    </center>
+        
+        
+                    
+                    
+                    
+        
+              </td>
+        
+        
+        
+              <td width = 40>
+        
+        </td>
+        
+        
+        
+        
+        
+        <td width = 500px valign = "top">
+            
+            
+    
+    
+    
+    
+    
+    
+    
+    
+        
+        </td>
+        
+        
+        
+        
+        </tr></table></center>
+        
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="text-align:justify">
+
+    <font style="color:blue; text-align: justify; font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', sans-serif;">
+            <font size = 12>
+    
+     
+            <center>
+    
+      
+           Software WarpPLS
+    
+            </center></font></font></p>
+
+
+            <br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <center>
+                <table width = 1040 border = 0>
+                    <tr>
+                        <td width = 500px valign = "top">
+                            
+                          <center>  
+                      <a href = "https://youtu.be/50agd3ruNiQ" target = "_blank">
+                <img src = "gambar/warppls 1.png" width = "500px"></img>
+            </a>
+            </center>
+                
+                
+                            
+                            
+                            
+                
+                      </td>
+                
+                
+                
+                      <td width = 40>
+                
+                </td>
+                
+                
+                
+                
+                
+                <td width = 500px valign = "top">
+                    
+                    
+            
+            
+               
+                    <center>  
+                        <a href = "https://youtu.be/Alur2QwwUiQ" target = "_blank">
+                  <img src = "gambar/warppls 2.png" width= "500px"></img>
+              </a>
+              </center>
+                  
+            
+            
+            
+            
+            
+            
+            
+            
+                
+                </td>
+                
+                
+                
+                
+                </tr></table></center>
+                
+                
+            
+            
+            
+            
+            
+            
+            <br><br><br>
+            
+            
+            
+
+
+
+
+    
+    
+    
+    <br><br><br><br><br>
+    
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <p style="text-align:justify">
+
+        <font style="color:blue; text-align: justify; font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', sans-serif;">
+                <font size = 12>
+        
+         
+                <center>
+        
+          
+               Software R
+        
+                </center></font></font></p>
+    
+    
+                <br>
+    
+    
+    
+    
+    
+    
+
+<center>
+    <table width = 1040 border = 0>
+        <tr>
+            <td width = 500px valign = "top">
+                
+              <center>  
+          <a href = "https://youtu.be/zV13FQlpB4U" target = "_blank">
+    <img src = "gambar/cover youtube pls sem dengan r kasus 1.png" width = "500px"></img>
+</a>
+</center>
+    
+    
+                
+                
+                
+    
+          </td>
+    
+    
+    
+          <td width = 40>
+    
+    </td>
+    
+    
+    
+    
+    
+    <td width = 500px valign = "top">
+        
+        
+        
+        
+    
+    </td>
+    
+    
+    
+    
+    </tr></table></center>
+    
+    
+    
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+    <center>
+        <table width = 1040 border = 0>
+            <tr>
+                <td width = 500px valign = "top">
+                    
+                    <font style="color:blue; text-align: justify; font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', sans-serif;">
+                        <font size = 3>
+                
+            Judul: <font color = "orange">Pengaruh Perceived Ease of Use, Student Satisfaction, Perceived Usefulness terhadap Gamification Quality; Pengaruh Gamification Quality terhadap Technology Anxiety; Pengaruh Gamification Quality & Technology Anxiety terhadap Software Engineering Intention; Dengan Gamification Quality & Technology Anxiety Sebagai Variabel Mediasi (Contoh Kasus pada Artikel di Journal of Education and Learning): SINTA 1 + SCOPUS</font><br><br>
+
+
+                            Variabel: <font color = "orange">Perceived Ease of Use (PEU), Student Satisfaction (SS), Perceived Usefulness (PU), Gamification Quality (GQ), Technology Anxiety (TA), Software Engineering Intention (SEI)</font><br>
+                            Software: <font color = "orange">R dan SmartPLS</font> <br>
+                            Jumlah Responden: <font color = "orange">90</font><br>
+                            Jumlah Item Pertanyaan: <font color = "orange">30</font><br>
+                            Ringkasan Hasil: <font color = "orange">Valid, Reliabel, Berpengaruh Semua dan Memediasi Semua</font><br>
+                            <a href = "https://youtu.be/zV13FQlpB4U" target = "_blank"><font color = "red">Link Youtube</font></a><br>
+                            <a href = "https://lynk.id/statkomat/1dmrm9zmpy0g" target = "_blank"><font color = "red">Link Bahan (1. file penjelasan dalam word dan pdf; 2. data excel; 3. file project smartpls; 4. file kode R PLS-SEM)</font></a>
+
+
+
+
+
+                        </font></font>        
+        
+              </td>
+        
+        
+        
+              <td width = 40>
+        
+        </td>
+        
+        
+        
+        
+        
+        <td width = 500px valign = "top">
+            
+            
+            
+        
+        </td>
+        
+        
+        
+        
+        </tr></table></center>
+
+
+
+
+
+
+
+
+
+<br><br><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    
+    
+    
+        
+        
+        
+        <br><br><br><br><br>
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <p style="text-align:justify">
+
+        <font style="color:blue; text-align: justify; font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', sans-serif;">
+                <font size = 12>
+        
+         
+                <center>
+        
+          
+               Software JASP
+        
+                </center></font></font></p>
+    
+    
+                <br>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        
+        
+        
+        <br><br><br><br><br>
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <br>
+    <br><br><br><br>
+    
+    <br>
+    <br><br><br><br>
+    
+    <br>
+    <br><br><br><br>
+    
+    <br>
+    <br><br><br><br>
+    
+                
+
+
+
+
+
+
+</html>

@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>STATCAL Certificate Verification</title>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./tombol_css.css">
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at 10% 15%, rgba(227,255,0,.10), transparent 22%),
+        radial-gradient(circle at 90% 85%, rgba(255,115,0,.11), transparent 24%),
+        linear-gradient(145deg, #061a46 0%, #0b2f78 52%, #0e4f9a 100%);
+      color: #10255a;
+    }
+
+    a { text-decoration: none; }
+
+    .page-shell {
+      min-height: 100vh;
+      padding-bottom: 50px;
+    }
+
+    .topbar {
+      width: 100%;
+      background: rgba(5, 24, 64, .94);
+      border-bottom: 1px solid rgba(255,255,255,.15);
+      box-shadow: 0 8px 26px rgba(0,0,0,.18);
+    }
+
+    .topbar-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 14px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: white;
+    }
+
+    .brand img {
+      width: 58px;
+      height: 58px;
+      object-fit: contain;
+    }
+
+    .brand-title {
+      font-size: 29px;
+      font-weight: 900;
+      letter-spacing: .5px;
+      line-height: 1;
+    }
+
+    .brand-subtitle {
+      margin-top: 5px;
+      font-size: 12px;
+      letter-spacing: 1.2px;
+      color: #dbe7ff;
+      text-transform: uppercase;
+    }
+
+    .topnav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 14px;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    .topnav a {
+      color: #ff7a1a;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .topnav a:hover { color: #e3ff00; }
+
+    .topnav .active {
+      color: #e3ff00;
+      padding-bottom: 4px;
+      border-bottom: 2px solid #e3ff00;
+    }
+
+    .main-card {
+      width: min(1120px, calc(100% - 32px));
+      margin: 42px auto 0;
+      background: #ffffff;
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: 0 24px 70px rgba(0,0,0,.30);
+      border: 1px solid rgba(255,255,255,.70);
+      position: relative;
+    }
+
+    .main-card::before {
+      content: "";
+      position: absolute;
+      width: 310px;
+      height: 310px;
+      border-radius: 50%;
+      right: -170px;
+      top: -160px;
+      background: rgba(31,78,121,.07);
+      pointer-events: none;
+    }
+
+    .hero {
+      padding: 48px 34px 26px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #0b2f78;
+      background: #eef5ff;
+      border: 1px solid #d7e5fb;
+      border-radius: 999px;
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .4px;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      margin: 18px 0 10px;
+      font-size: clamp(31px, 5vw, 54px);
+      line-height: 1.05;
+      color: #0b2f78;
+      letter-spacing: -.5px;
+    }
+
+    .orange-line {
+      width: 160px;
+      height: 4px;
+      margin: 18px auto 18px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #0b2f78, #ff7a1a, #e3ff00);
+    }
+
+    .hero p {
+      max-width: 760px;
+      margin: 0 auto;
+      color: #4a5878;
+      font-size: 17px;
+      line-height: 1.7;
+    }
+
+    .verify-panel {
+      margin: 8px 34px 30px;
+      padding: 24px;
+      border-radius: 22px;
+      background: linear-gradient(145deg, #f8fbff, #ffffff);
+      border: 1px solid #dfe8f5;
+      box-shadow: 0 14px 34px rgba(31,78,121,.12);
+    }
+
+    .verify-label {
+      display: block;
+      color: #0b2f78;
+      font-size: 16px;
+      font-weight: 800;
+      margin-bottom: 9px;
+    }
+
+    .verify-row {
+      display: grid;
+      grid-template-columns: 1fr 260px;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .verify-input {
+      width: 100%;
+      height: 56px;
+      border: 2px solid #cad8ed;
+      border-radius: 14px;
+      padding: 0 18px;
+      font-size: 17px;
+      color: #0b2f78;
+      outline: none;
+      transition: .2s ease;
+      background: white;
+    }
+
+    .verify-input:focus {
+      border-color: #0b2f78;
+      box-shadow: 0 0 0 4px rgba(11,47,120,.08);
+    }
+
+    .verify-button {
+      height: 56px;
+      border: 0;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #0b2f78, #113fa1);
+      color: white;
+      font-size: 16px;
+      font-weight: 900;
+      cursor: pointer;
+      transition: transform .18s ease, box-shadow .18s ease;
+      box-shadow: 0 10px 22px rgba(11,47,120,.22);
+    }
+
+    .verify-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 28px rgba(11,47,120,.28);
+    }
+
+    .example-note {
+      margin-top: 10px;
+      font-size: 13px;
+      color: #74819f;
+    }
+
+    .result-wrap {
+      display: none;
+      margin: 0 34px 38px;
+    }
+
+    .result-wrap.show { display: block; }
+
+    .verified-card,
+    .notfound-card {
+      border-radius: 24px;
+      padding: 28px;
+      animation: fadeUp .25s ease-out;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .verified-card {
+      border: 2px solid #79c873;
+      background: linear-gradient(145deg, #fbfffb, #f2fff4);
+    }
+
+    .notfound-card {
+      border: 2px solid #ef8b8b;
+      background: linear-gradient(145deg, #fffafa, #fff2f2);
+      text-align: center;
+    }
+
+    .status-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .status-icon {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: white;
+      font-size: 28px;
+      font-weight: 900;
+      flex: 0 0 auto;
+    }
+
+    .status-icon.good { background: #178c31; }
+    .status-icon.bad { background: #d62828; margin: 0 auto 14px; }
+
+    .status-title {
+      margin: 0;
+      color: #178c31;
+      font-size: 24px;
+      font-weight: 900;
+    }
+
+    .verified-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 26px;
+    }
+
+    .person-name {
+      margin: 0 0 5px;
+      font-size: clamp(28px, 4vw, 42px);
+      color: #0b2f78;
+      line-height: 1.1;
+    }
+
+    .person-role {
+      color: #53617f;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    .event-name {
+      color: #0b2f78;
+      font-size: 18px;
+      font-weight: 900;
+      line-height: 1.5;
+      margin: 0 0 12px;
+    }
+
+    .hands-on {
+      display: inline-block;
+      padding: 8px 13px;
+      border-radius: 999px;
+      background: #ff7a1a;
+      color: white;
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .info-list {
+      border-left: 1px solid #cbd8e7;
+      padding-left: 24px;
+    }
+
+    .info-item {
+      padding: 8px 0 12px;
+      border-bottom: 1px solid #dfe8f3;
+    }
+
+    .info-item:last-child { border-bottom: 0; }
+
+    .info-label {
+      color: #71809b;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .7px;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    .info-value {
+      color: #0b2f78;
+      font-size: 16px;
+      line-height: 1.45;
+      font-weight: 800;
+      word-break: break-word;
+    }
+
+    .founder {
+      font-weight: 700;
+      font-style: italic;
+      color: #4d5f82;
+      margin-top: 2px;
+    }
+
+    .notfound-title {
+      margin: 0 0 10px;
+      font-size: 26px;
+      color: #d62828;
+      font-weight: 900;
+    }
+
+    .notfound-card p {
+      max-width: 620px;
+      margin: 0 auto;
+      color: #6f4f54;
+      line-height: 1.65;
+      font-size: 15px;
+    }
+
+    .trust-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: #12326e;
+      border-top: 1px solid #143f85;
+    }
+
+    .trust-item {
+      background: #0a2a69;
+      color: white;
+      padding: 22px 18px;
+      text-align: center;
+    }
+
+    .trust-title {
+      color: #e3ff00;
+      font-size: 15px;
+      font-weight: 900;
+      margin-bottom: 5px;
+    }
+
+    .trust-text {
+      color: #dbe7ff;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .footer {
+      text-align: center;
+      color: #dce8ff;
+      padding: 26px 18px 0;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .footer strong { color: #e3ff00; }
+
+    @media (max-width: 820px) {
+      .topbar-inner { justify-content: center; text-align: center; }
+      .topnav { justify-content: center; }
+      .verify-row { grid-template-columns: 1fr; }
+      .verified-grid { grid-template-columns: 1fr; }
+      .info-list { border-left: 0; border-top: 1px solid #cbd8e7; padding-left: 0; padding-top: 18px; }
+      .trust-strip { grid-template-columns: repeat(2, 1fr); }
+      .main-card { margin-top: 22px; }
+    }
+
+    @media (max-width: 520px) {
+      .hero { padding: 36px 20px 20px; }
+      .verify-panel, .result-wrap { margin-left: 18px; margin-right: 18px; }
+      .verified-card, .notfound-card { padding: 22px 18px; }
+      .trust-strip { grid-template-columns: 1fr; }
+      .brand-title { font-size: 24px; }
+      .brand img { width: 48px; height: 48px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a href="index.html" class="brand" aria-label="STATCAL Home">
+          <img src="logo.png" alt="STATCAL Logo">
+          <div>
+            <div class="brand-title">STATCAL</div>
+            <div class="brand-subtitle">Statistical Calculator</div>
+          </div>
+        </a>
+
+        <nav class="topnav" aria-label="Main navigation">
+          <a href="index.html">Home</a>
+          <a href="statcal online.html">STATCAL Online</a>
+          <a href="material.html">Material</a>
+          <a href="team.html">Team</a>
+          <a href="donasi.html">Donation</a>
+          <a href="sharing statcal.html">Sharing</a>
+          <a href="certificate.html" class="active">Cek Sertifikat</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="main-card">
+      <section class="hero">
+        <div class="eyebrow">Official STATCAL Credential Check</div>
+        <h1>STATCAL Certificate Verification</h1>
+        <div class="orange-line"></div>
+        <p>
+          Periksa keaslian sertifikat yang diterbitkan oleh STATCAL dengan memasukkan
+          <strong>Certificate ID</strong> yang tertera pada sertifikat.
+        </p>
+      </section>
+
+      <section class="verify-panel" aria-label="Certificate verification form">
+        <label for="certificateIdInput" class="verify-label">Masukkan Certificate ID</label>
+        <div class="verify-row">
+          <input
+            id="certificateIdInput"
+            class="verify-input"
+            type="text"
+            placeholder="Contoh: STATCAL-WS-20260822-001"
+            autocomplete="off"
+            spellcheck="false"
+          >
+          <button id="verifyCertificateButton" class="verify-button" type="button">
+            Cek Sertifikat
+          </button>
+        </div>
+        <div class="example-note">
+          Masukkan kode persis seperti yang tercetak pada sertifikat. Spasi di awal/akhir akan diabaikan.
+        </div>
+      </section>
+
+      <section id="verifiedResult" class="result-wrap" aria-live="polite">
+        <div class="verified-card">
+          <div class="status-row">
+            <div class="status-icon good">✓</div>
+            <div>
+              <h2 class="status-title">SERTIFIKAT TERVERIFIKASI</h2>
+              <div style="color:#60708e; margin-top:3px;">Certificate Verified</div>
+            </div>
+          </div>
+
+          <div class="verified-grid">
+            <div>
+              <h3 id="resultName" class="person-name">—</h3>
+              <div id="resultRole" class="person-role">Peserta</div>
+              <p id="resultEvent" class="event-name">—</p>
+              <span id="resultEventType" class="hands-on">Lokakarya Praktik · 100% Hands-On</span>
+            </div>
+
+            <div class="info-list">
+              <div class="info-item">
+                <div class="info-label">Tanggal Kegiatan</div>
+                <div id="resultDate" class="info-value">—</div>
+              </div>
+              <div class="info-item">
+                <div class="info-label">Certificate ID</div>
+                <div id="resultId" class="info-value">—</div>
+              </div>
+              <div class="info-item">
+                <div class="info-label">Diterbitkan oleh</div>
+                <div class="info-value">Prana Ugiana Gio</div>
+                <div class="founder">Founder &amp; CEO, STATCAL</div>
+              </div>
+              <div class="info-item">
+                <div class="info-label">Penyelenggara</div>
+                <div class="info-value">STATCAL — Statistical Calculator</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="notFoundResult" class="result-wrap" aria-live="polite">
+        <div class="notfound-card">
+          <div class="status-icon bad">×</div>
+          <h2 class="notfound-title">Certificate ID Not Found</h2>
+          <p>
+            Certificate ID yang Anda masukkan tidak ditemukan pada database sertifikat STATCAL.
+            Periksa kembali penulisan kode dan coba lagi.
+          </p>
+        </div>
+      </section>
+
+      <section class="trust-strip">
+        <div class="trust-item">
+          <div class="trust-title">Terpercaya</div>
+          <div class="trust-text">Sertifikat diverifikasi berdasarkan data resmi STATCAL.</div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-title">Unik</div>
+          <div class="trust-text">Setiap peserta menggunakan Certificate ID yang berbeda.</div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-title">Cepat</div>
+          <div class="trust-text">Hasil verifikasi ditampilkan langsung pada halaman ini.</div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-title">Terbuka</div>
+          <div class="trust-text">HR, kampus, asesor, dan publik dapat memeriksa keaslian sertifikat.</div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <strong>Organized by STATCAL — Statistical Calculator</strong><br>
+      www.statcal.com
+    </footer>
+  </div>
+
+  <script>
+    /* =========================================================
+       DATABASE SERTIFIKAT
+       Tambahkan peserta baru di dalam array certificates.
+       ========================================================= */
+    const certificates = [
+      {
+        certificateId: "STATCAL-WS-20260822-001",
+        name: "Syathir Sofyan",
+        role: "Peserta",
+        event: "Web Scraping, Pembersihan Data Teks, dan Klasifikasi Sentimen dengan STATCAL ONLINE",
+        eventType: "Lokakarya Praktik · 100% Hands-On",
+        date: "22 August 2026",
+        status: "Valid"
+      },
+      {
+        certificateId: "STATCAL-WS-20260822-002",
+        name: "Shintami Rouwelvia Malik",
+        role: "Peserta",
+        event: "Web Scraping, Pembersihan Data Teks, dan Klasifikasi Sentimen dengan STATCAL ONLINE",
+        eventType: "Lokakarya Praktik · 100% Hands-On",
+        date: "22 August 2026",
+        status: "Valid"
+      },
+      {
+        certificateId: "STATCAL-WS-20260822-003",
+        name: "Dadang Saepuloh",
+        role: "Peserta",
+        event: "Web Scraping, Pembersihan Data Teks, dan Klasifikasi Sentimen dengan STATCAL ONLINE",
+        eventType: "Lokakarya Praktik · 100% Hands-On",
+        date: "22 August 2026",
+        status: "Valid"
+      },
+      {
+        certificateId: "STATCAL-WS-20260822-004",
+        name: "Siti Nurlatifah",
+        role: "Peserta",
+        event: "Web Scraping, Pembersihan Data Teks, dan Klasifikasi Sentimen dengan STATCAL ONLINE",
+        eventType: "Lokakarya Praktik · 100% Hands-On",
+        date: "22 August 2026",
+        status: "Valid"
+      },
+      {
+        certificateId: "STATCAL-WS-20260822-005",
+        name: "Rodyah Widyarini",
+        role: "Peserta",
+        event: "Web Scraping, Pembersihan Data Teks, dan Klasifikasi Sentimen dengan STATCAL ONLINE",
+        eventType: "Lokakarya Praktik · 100% Hands-On",
+        date: "22 August 2026",
+        status: "Valid"
+      }
+    ];
+
+    const input = document.getElementById("certificateIdInput");
+    const button = document.getElementById("verifyCertificateButton");
+    const verifiedResult = document.getElementById("verifiedResult");
+    const notFoundResult = document.getElementById("notFoundResult");
+
+    function normalizeCertificateId(value) {
+      return String(value || "").trim().toUpperCase();
+    }
+
+    function hideResults() {
+      verifiedResult.classList.remove("show");
+      notFoundResult.classList.remove("show");
+    }
+
+    function showVerified(certificate) {
+      document.getElementById("resultName").textContent = certificate.name;
+      document.getElementById("resultRole").textContent = certificate.role;
+      document.getElementById("resultEvent").textContent = certificate.event;
+      document.getElementById("resultEventType").textContent = certificate.eventType;
+      document.getElementById("resultDate").textContent = certificate.date;
+      document.getElementById("resultId").textContent = certificate.certificateId;
+
+      notFoundResult.classList.remove("show");
+      verifiedResult.classList.add("show");
+
+      setTimeout(() => {
+        verifiedResult.scrollIntoView({ behavior: "smooth", block: "center" });
+      }, 80);
+    }
+
+    function showNotFound() {
+      verifiedResult.classList.remove("show");
+      notFoundResult.classList.add("show");
+
+      setTimeout(() => {
+        notFoundResult.scrollIntoView({ behavior: "smooth", block: "center" });
+      }, 80);
+    }
+
+    function verifyCertificate() {
+      hideResults();
+
+      const certificateId = normalizeCertificateId(input.value);
+
+      if (!certificateId) {
+        input.focus();
+        return;
+      }
+
+      const certificate = certificates.find(item =>
+        normalizeCertificateId(item.certificateId) === certificateId &&
+        normalizeCertificateId(item.status) === "VALID"
+      );
+
+      if (certificate) {
+        showVerified(certificate);
+      } else {
+        showNotFound();
+      }
+    }
+
+    button.addEventListener("click", verifyCertificate);
+
+    input.addEventListener("keydown", function(event) {
+      if (event.key === "Enter") {
+        verifyCertificate();
+      }
+    });
+
+    input.addEventListener("input", hideResults);
+  </script>
+</body>
+</html>
