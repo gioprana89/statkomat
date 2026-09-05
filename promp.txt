@@ -67,8 +67,10 @@ Bisakah materi-materi pada "PLS-SEM.html" dipindahkan atau ditambah ke file inde
 
 
 
-saya berikan kode index.html saya berikan juga kode html "PLS-SEM.html" Bisakah materi-materi pada "CB-SEM.html" dipindahkan atau ditambah ke file index.html saya tambahkan subbagian baru yakni "CB-SEM" untuk gambarnya, saya simpan di folder "gambar", kemudian masuk ke folder "cb-sem", nah disitu saya simpan gambarnya ya berikan file html terbarunya ya
+saya berikan kode index.html saya berikan juga kode html "SVM.html" Bisakah materi-materi pada "SVM.html" dipindahkan atau ditambah ke file index.html saya tambahkan subbagian baru yakni "Support Vector Machine (SVM)" untuk gambarnya, saya simpan di folder "gambar", kemudian masuk ke folder "svm", nah disitu saya simpan gambarnya ya berikan file html terbarunya ya
 
+
+kemudian untuk judul sub bagian pls-sem, diganti menjadi "Partial Least Squares Structural Equation Modeling (PLS-SEM)" dan judul sub bagian cb-sem diganti menjadi "Covariance-Based Structural Equation Modeling (CB-SEM)"
 
 
 
