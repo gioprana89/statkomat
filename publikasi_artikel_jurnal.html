@@ -1,0 +1,1464 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Daftar publikasi artikel jurnal Prana Ugiana Gio, termasuk sumber artikel, indeks Scopus, Scimago, posisi author, dan dokumentasi publikasi.">
+  <title>Publikasi Artikel Jurnal | Prana Ugiana Gio</title>
+  <style>
+    :root {
+      --navy:#031d42;
+      --navy-2:#052f68;
+      --blue:#096ed5;
+      --blue-2:#1585f4;
+      --blue-light:#eaf4ff;
+      --orange:#ff8518;
+      --orange-dark:#ef7206;
+      --orange-light:#fff1e4;
+      --green:#079455;
+      --green-light:#ecfdf3;
+      --white:#fff;
+      --bg:#f5f8fc;
+      --text:#172033;
+      --muted:#667085;
+      --border:#e0e7ef;
+      --shadow:0 12px 35px rgba(5,39,82,.08);
+      --shadow-hover:0 24px 55px rgba(5,39,82,.16);
+      --radius:22px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--text);line-height:1.65}
+    body.modal-open{overflow:hidden}
+    a{color:inherit;text-decoration:none}
+    img{display:block;max-width:100%}
+    button,input{font:inherit}
+    button{border:0}
+    .container{width:min(1180px,calc(100% - 36px));margin:0 auto}
+
+    .navbar{position:sticky;top:0;z-index:1000;background:rgba(255,255,255,.95);backdrop-filter:blur(14px);border-bottom:1px solid rgba(224,231,239,.9)}
+    .nav-inner{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:25px}
+    .brand{display:flex;align-items:center;gap:11px;color:var(--navy);font-size:19px;font-weight:900;letter-spacing:-.4px}
+    .brand-icon{width:43px;height:43px;border-radius:13px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--blue),var(--orange));box-shadow:0 7px 18px rgba(9,110,213,.22)}
+    .brand-icon svg{width:23px;height:23px;fill:none;stroke:#fff;stroke-width:2}
+    .nav-links{display:flex;align-items:center;gap:22px;font-size:13px;font-weight:800;color:#475467}
+    .nav-links>a{transition:.2s}
+    .nav-links>a:hover,.nav-links>a.active{color:var(--blue)}
+    .nav-home{display:inline-flex;align-items:center;gap:7px;padding:10px 15px;border-radius:11px;background:linear-gradient(135deg,var(--orange),var(--orange-dark));color:white!important;box-shadow:0 6px 18px rgba(255,133,24,.2)}
+    .nav-home svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2}
+
+    .hero{position:relative;overflow:hidden;padding:76px 0 72px;color:#fff;background:radial-gradient(circle at 90% 15%,rgba(255,141,38,.28),transparent 25%),radial-gradient(circle at 5% 20%,rgba(0,132,255,.24),transparent 30%),linear-gradient(135deg,#03152f 0%,#043c7d 52%,#0873dd 100%)}
+    .hero:before{content:"";position:absolute;width:520px;height:520px;right:-260px;bottom:-340px;border-radius:50%;border:80px solid rgba(255,255,255,.035)}
+    .hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.2fr .8fr;align-items:center;gap:55px}
+    .hero-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;margin-bottom:18px;border:1px solid rgba(255,255,255,.2);border-radius:999px;background:rgba(255,255,255,.08);font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.12em}
+    .hero-badge:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--orange);box-shadow:0 0 0 5px rgba(255,133,24,.13)}
+    .hero h1{max-width:760px;font-size:clamp(40px,5.6vw,66px);line-height:1.04;letter-spacing:-2.4px}
+    .hero h1 span{display:block;color:#ffb362}
+    .hero p{max-width:760px;margin-top:20px;color:rgba(255,255,255,.82);font-size:16px}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+    .hero-btn{min-height:46px;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 16px;border-radius:12px;font-size:12px;font-weight:900;transition:.2s}
+    .hero-btn.primary{background:linear-gradient(135deg,var(--orange),var(--orange-dark));color:#fff;box-shadow:0 9px 24px rgba(255,133,24,.23)}
+    .hero-btn.outline{border:1px solid rgba(255,255,255,.23);background:rgba(255,255,255,.07);color:#fff}
+    .hero-btn:hover{transform:translateY(-2px)}
+    .hero-btn svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:2}
+
+    .hero-side{display:grid;gap:14px}
+    .hero-photo-card{overflow:hidden;border:1px solid rgba(255,255,255,.18);border-radius:24px;background:rgba(255,255,255,.10);backdrop-filter:blur(10px);box-shadow:0 22px 55px rgba(0,0,0,.20)}
+    .hero-photo-card img{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:center;transition:transform .4s}
+    .hero-photo-card:hover img{transform:scale(1.02)}
+    .hero-photo-caption{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 15px;background:rgba(2,21,46,.60)}
+    .hero-photo-caption strong{display:block;color:#fff;font-size:12px}
+    .hero-photo-caption span{display:block;margin-top:1px;color:rgba(255,255,255,.68);font-size:9px}
+    .photo-badge{padding:6px 9px;border-radius:999px;background:rgba(255,179,98,.16);color:#ffd4a7;font-size:9px;font-weight:900;white-space:nowrap}
+
+    .stats-panel{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+    .stat-box{padding:16px 14px;border:1px solid rgba(255,255,255,.16);border-radius:19px;background:rgba(255,255,255,.10);backdrop-filter:blur(10px);box-shadow:0 18px 42px rgba(0,0,0,.10)}
+    .stat-box.wide{grid-column:auto}
+    .stat-number{display:block;font-size:26px;font-weight:950;line-height:1;color:#fff;letter-spacing:-1px}
+    .stat-label{display:block;margin-top:7px;color:rgba(255,255,255,.72);font-size:11px;font-weight:750}
+
+    .toolbar-section{padding:40px 0 0}
+    .toolbar-card{display:flex;align-items:center;justify-content:space-between;gap:22px;padding:20px 22px;border:1px solid var(--border);border-radius:18px;background:#fff;box-shadow:var(--shadow)}
+    .toolbar-copy strong{display:block;color:var(--navy);font-size:15px}
+    .toolbar-copy span{display:block;margin-top:2px;color:var(--muted);font-size:11px}
+    .search-box{position:relative;width:min(390px,100%)}
+    .search-box svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:18px;height:18px;fill:none;stroke:#98a2b3;stroke-width:2}
+    .search-box input{width:100%;height:46px;padding:0 15px 0 43px;border:1px solid #dce4ed;border-radius:12px;outline:none;color:var(--text);background:#fff;font-size:13px;transition:.2s}
+    .search-box input:focus{border-color:var(--blue);box-shadow:0 0 0 4px rgba(9,110,213,.08)}
+
+    .publications{padding:34px 0 80px}
+    .section-head{display:flex;align-items:end;justify-content:space-between;gap:25px;margin-bottom:24px}
+    .kicker{color:var(--orange);font-size:10px;font-weight:900;letter-spacing:.14em;text-transform:uppercase}
+    .section-head h2{margin-top:5px;color:var(--navy);font-size:clamp(28px,4vw,40px);line-height:1.15;letter-spacing:-1.1px}
+    .result-count{padding:7px 11px;border-radius:999px;background:var(--blue-light);color:var(--blue);font-size:10px;font-weight:900;white-space:nowrap}
+
+    .publication-list{display:grid;gap:26px}
+    .publication-card{position:relative;padding:28px;border:1px solid var(--border);border-radius:24px;background:#fff;box-shadow:0 7px 25px rgba(7,45,91,.06);transition:transform .28s,box-shadow .28s,border-color .28s}
+    .publication-card:hover{transform:translateY(-4px);border-color:#c2daf3;box-shadow:var(--shadow-hover)}
+    .card-topline{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:15px}
+    .number-badge{width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:13px;background:linear-gradient(135deg,var(--navy-2),var(--blue-2));color:#fff;font-size:13px;font-weight:950;box-shadow:0 7px 18px rgba(9,110,213,.16)}
+    .meta-badges{display:flex;align-items:center;gap:7px}
+    .year-badge,.scopus-badge{display:inline-flex;align-items:center;gap:6px;padding:7px 10px;border-radius:999px;font-size:10px;font-weight:900}
+    .year-badge{background:var(--orange-light);color:var(--orange-dark)}
+    .scopus-badge{background:var(--green-light);color:var(--green)}
+    .scopus-badge svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2.6}
+    .journal-label{display:inline-block;margin-bottom:8px;color:var(--blue);font-size:10px;font-weight:900;letter-spacing:.11em;text-transform:uppercase}
+    .article-title{max-width:1000px;color:var(--navy);font-size:clamp(22px,3vw,29px);line-height:1.25;letter-spacing:-.6px}
+    .author-block{margin-top:19px;padding:16px 18px;border-left:4px solid var(--orange);border-radius:0 14px 14px 0;background:#f8fafc}
+    .info-label{display:flex;align-items:center;gap:7px;margin-bottom:7px;color:#475467;font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.08em}
+    .info-label svg{width:16px;height:16px;fill:none;stroke:var(--orange);stroke-width:1.8}
+    .author-block p{color:#556176;font-size:12px;line-height:1.75}
+    .author-highlight{color:var(--navy);background:#fff0d9;padding:2px 5px;border-radius:5px}
+    .facts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:17px}
+    .fact-box{padding:13px 14px;border:1px solid #e8edf3;border-radius:13px;background:#fff}
+    .fact-box span{display:block;color:#7a8699;font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.05em}
+    .fact-box strong{display:block;margin-top:4px;color:var(--navy);font-size:13px}
+    .fact-box .yes-text{color:var(--green)}
+
+    .gallery-heading{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-top:25px;margin-bottom:11px}
+    .gallery-heading span{display:block;color:var(--navy);font-size:12px;font-weight:900}
+    .gallery-heading small{display:block;margin-top:2px;color:#8491a3;font-size:9px}
+    .gallery-heading>svg{width:20px;height:20px;fill:none;stroke:var(--blue);stroke-width:1.7}
+    .image-gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:11px}
+    .gallery-item{position:relative;overflow:hidden;width:100%;aspect-ratio:16/10;border:1px solid #e0e7ef;border-radius:14px;background:#edf3f9;cursor:pointer;box-shadow:0 5px 14px rgba(4,40,80,.05)}
+    .gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .35s,filter .35s}
+    .gallery-item:hover img{transform:scale(1.035);filter:brightness(.85)}
+    .zoom-hint{position:absolute;right:9px;bottom:9px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:9px;background:rgba(3,29,66,.85);color:#fff;opacity:0;transform:translateY(4px);transition:.2s}
+    .gallery-item:hover .zoom-hint{opacity:1;transform:translateY(0)}
+    .zoom-hint svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8}
+    .missing-label{display:none;position:absolute;inset:0;align-items:center;justify-content:center;flex-direction:column;gap:4px;padding:12px;color:#6c7a8d;background:linear-gradient(135deg,#f3f6f9,#eaf0f6);font-size:11px;font-weight:900;text-align:center}
+    .missing-label small{font-size:8px;font-weight:650;color:#98a2b3}
+    .gallery-item.image-missing{cursor:default}
+    .gallery-item.image-missing .missing-label{display:flex}
+    .gallery-item.image-missing .zoom-hint{display:none}
+
+    .card-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:22px;padding-top:20px;border-top:1px solid #edf0f4}
+    .action-btn{min-height:42px;display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:9px 13px;border-radius:10px;font-size:10px;font-weight:900;transition:.2s}
+    .action-btn svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.9}
+    .action-btn:hover{transform:translateY(-2px)}
+    .action-btn.primary{color:#fff;background:linear-gradient(135deg,var(--orange),var(--orange-dark));box-shadow:0 6px 16px rgba(239,114,6,.18)}
+    .action-btn.scopus{color:#fff;background:linear-gradient(135deg,#0a7b66,#0a9f79)}
+    .action-btn.neutral{color:var(--blue);background:var(--blue-light)}
+
+    #noResults{display:none;padding:54px 20px;border:1px dashed #c9d5e3;border-radius:18px;background:#fff;text-align:center;color:var(--muted)}
+    #noResults svg{width:44px;height:44px;margin:0 auto 10px;fill:none;stroke:#98a2b3;stroke-width:1.5}
+    #noResults h3{color:var(--navy);font-size:18px}
+    #noResults p{margin-top:4px;font-size:12px}
+
+    .source-note{margin-top:30px;padding:18px 20px;border:1px solid #d9e9f9;border-radius:15px;background:#eef7ff;color:#516175;font-size:10px;line-height:1.7}
+    .source-note strong{color:var(--navy)}
+
+    footer{padding:34px 0;background:#02152e;color:rgba(255,255,255,.65)}
+    .footer-inner{display:flex;align-items:center;justify-content:space-between;gap:30px}
+    .footer-name{color:#fff;font-size:14px;font-weight:900}
+    .footer-role{margin-top:2px;font-size:11px}
+    .footer-links{display:flex;flex-wrap:wrap;gap:17px;font-size:11px;font-weight:800}
+    .footer-links a:hover{color:#fff}
+
+    .lightbox{position:fixed;inset:0;z-index:2000;display:none;align-items:center;justify-content:center;padding:28px;background:rgba(1,14,31,.92);backdrop-filter:blur(8px)}
+    .lightbox.open{display:flex}
+    .lightbox img{max-width:min(1180px,92vw);max-height:84vh;border-radius:14px;box-shadow:0 24px 80px rgba(0,0,0,.45);background:#fff}
+    .lightbox-close{position:fixed;top:22px;right:24px;width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:rgba(255,255,255,.12);color:#fff;cursor:pointer;font-size:25px;line-height:1;transition:.2s}
+    .lightbox-close:hover{background:rgba(255,255,255,.2);transform:rotate(4deg)}
+
+    @media(max-width:900px){
+      .hero-grid{grid-template-columns:1fr}
+      .hero-side{max-width:620px}
+      .stats-panel{max-width:620px}
+      .toolbar-card{align-items:flex-start;flex-direction:column}
+      .search-box{width:100%}
+      .nav-links a:not(.nav-home){display:none}
+    }
+    @media(max-width:680px){
+      .container{width:min(100% - 26px,1180px)}
+      .hero{padding:56px 0 60px}
+      .hero h1{letter-spacing:-1.5px}
+      .publication-card{padding:20px}
+      .facts-grid{grid-template-columns:1fr}
+      .image-gallery{grid-template-columns:1fr}
+      .gallery-item{aspect-ratio:16/9}
+      .section-head{align-items:flex-start;flex-direction:column;gap:10px}
+      .card-actions{display:grid;grid-template-columns:1fr}
+      .footer-inner{align-items:flex-start;flex-direction:column}
+    }
+    @media(max-width:430px){
+      .brand{font-size:16px}
+      .brand-icon{width:39px;height:39px}
+      .nav-home{padding:9px 11px;font-size:10px}
+      .stats-panel{grid-template-columns:1fr}
+      .stat-box.wide{grid-column:auto}
+      .meta-badges{align-items:flex-end;flex-direction:column}
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html">
+        <div class="brand-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="4"></rect><path d="m10 9 5 3-5 3z"></path></svg>
+        </div>
+        <span>STATKOMAT</span>
+      </a>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="index.html#links">Professional Links</a>
+        <a href="index.html#catalog">Video Catalog</a>
+        <a class="active" href="publikasi_artikel_jurnal.html">Publikasi Artikel Jurnal</a>
+        <a class="nav-home" href="index.html">
+          <svg viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"></path></svg>
+          Kembali
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="hero-badge">Academic Publication Portfolio</div>
+          <h1>Publikasi <span>Artikel Jurnal</span></h1>
+          <p>Daftar publikasi artikel jurnal <strong>Prana Ugiana Gio</strong>, dilengkapi informasi jurnal, posisi author, status indeks Scopus, sumber artikel, Scimago, serta dokumentasi gambar publikasi.</p>
+          <div class="hero-actions">
+            <a class="hero-btn primary" href="#daftar-publikasi">
+              Lihat Publikasi
+              <svg viewBox="0 0 24 24"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg>
+            </a>
+            <a class="hero-btn outline" href="https://www.scopus.com/authid/detail.uri?authorId=57200727340" target="_blank" rel="noopener noreferrer">
+              Profil Scopus
+              <svg viewBox="0 0 24 24"><path d="M14 5h5v5"></path><path d="m10 14 9-9"></path><path d="M19 13v6H5V5h6"></path></svg>
+            </a>
+          </div>
+        </div>
+        <div class="hero-side">
+          <div class="hero-photo-card">
+            <img src="foto-ugi-2.jpg" alt="Foto Prana Ugiana Gio" loading="eager">
+            <div class="hero-photo-caption">
+              <div>
+                <strong>Prana Ugiana Gio</strong>
+                <span>Academic Publication Portfolio</span>
+              </div>
+              <div class="photo-badge">2026</div>
+            </div>
+          </div>
+          <div class="stats-panel" aria-label="Ringkasan publikasi">
+            <div class="stat-box"><span class="stat-number">13</span><span class="stat-label">Artikel Jurnal 2026</span></div>
+            <div class="stat-box"><span class="stat-number">11</span><span class="stat-label">Jurnal Berbeda</span></div>
+            <div class="stat-box wide"><span class="stat-number">100%</span><span class="stat-label">Artikel pada daftar ini berstatus terindeks Scopus</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="toolbar-section">
+      <div class="container">
+        <div class="toolbar-card">
+          <div class="toolbar-copy">
+            <strong>Cari publikasi dengan cepat</strong>
+            <span>Pencarian mencakup judul artikel, nama jurnal, dan author.</span>
+          </div>
+          <label class="search-box" aria-label="Cari publikasi">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg>
+            <input id="publicationSearch" type="search" placeholder="Cari judul, jurnal, atau author..." autocomplete="off">
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <section class="publications" id="daftar-publikasi">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="kicker">Daftar Publikasi • 2026</div>
+            <h2>Artikel Jurnal</h2>
+          </div>
+          <div class="result-count" id="resultCount">13 Artikel</div>
+        </div>
+
+        <div class="publication-list" id="publicationList">
+
+      <article class="publication-card" data-search="evaluating internet accessibility and equity in indonesia using integrated susenas and ookla data discover sustainability rezzy eko caraka, khairunnisa supardi, puspita anggraini kaban, prana ugiana gio, esa prakasa, vijaya isnaniawardhani, rumanintya lisaria putri, amos lukas, dian yudha risdianto, rung ching chen, anjar dimara sakti, pujianto, robert kurniawan &amp; bens pardamean">
+        <div class="card-topline">
+          <div class="number-badge">01</div>
+          <div class="meta-badges">
+            <span class="year-badge">2026</span>
+            <span class="scopus-badge">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"></path></svg>
+              Scopus
+            </span>
+          </div>
+        </div>
+
+        <div class="journal-label">Discover Sustainability</div>
+        <h2 class="article-title">Evaluating internet accessibility and equity in Indonesia using integrated SUSENAS and OOKLA data</h2>
+
+        <div class="author-block">
+          <div class="info-label">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"></circle><path d="M3.5 19c.7-4 2.6-6 5.5-6s4.8 2 5.5 6"></path><path d="M16 8h5M18.5 5.5v5"></path></svg>
+            Author
+          </div>
+          <p>Rezzy Eko Caraka, Khairunnisa Supardi, Puspita Anggraini Kaban, <strong class="author-highlight">Prana Ugiana Gio</strong>, Esa Prakasa, Vijaya Isnaniawardhani, Rumanintya Lisaria Putri, Amos Lukas, Dian Yudha Risdianto, Rung Ching Chen, Anjar Dimara Sakti, Pujianto, Robert Kurniawan &amp; Bens Pardamean</p>
+        </div>
+
+        <div class="facts-grid">
+          <div class="fact-box">
+            <span>Author Prana Ugiana Gio</span>
+            <strong>Posisi ke-4</strong>
+          </div>
+          <div class="fact-box">
+            <span>Terindeks Scopus</span>
+            <strong class="yes-text">Ya</strong>
+          </div>
+          <div class="fact-box">
+            <span>Tahun</span>
+            <strong>2026</strong>
+          </div>
+        </div>
+
+        <div class="gallery-heading">
+          <div>
+            <span>Dokumentasi Artikel</span>
+            <small>3 gambar • klik gambar untuk memperbesar</small>
+          </div>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"></rect><circle cx="9" cy="10" r="2"></circle><path d="m4 17 5-4 3 3 3-2 5 4"></path></svg>
+        </div>
+        <div class="image-gallery">
+          <button class="gallery-item" type="button" data-full="publikasi artikel jurnal/2026/artikel ke-1/gambar ke-1.png" aria-label="Perbesar gambar ke-1 artikel ke-1">
+            <img src="publikasi artikel jurnal/2026/artikel ke-1/gambar ke-1.png" alt="Gambar ke-1 untuk artikel Evaluating internet accessibility and equity in Indonesia using integrated SUSENAS and OOKLA data" loading="lazy" onerror="this.closest('.gallery-item').classList.add('image-missing'); this.style.display='none';">
+            <span class="missing-label">Gambar ke-1<small>Pastikan file tersedia pada folder artikel ke-1</small></span>
+            <span class="zoom-hint" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path><path d="M11 8v6M8 11h6"></path></svg>
+            </span>
+          </button>
+          <button class="gallery-item" type="button" data-full="publikasi artikel jurnal/2026/artikel ke-1/gambar ke-2.png" aria-label="Perbesar gambar ke-2 artikel ke-1">
+            <img src="publikasi artikel jurnal/2026/artikel ke-1/gambar ke-2.png" alt="Gambar ke-2 untuk artikel Evaluating internet accessibility and equity in Indonesia using integrated SUSENAS and OOKLA data" loading="lazy" onerror="this.closest('.gallery-item').classList.add('image-missing'); this.style.display='none';">
+            <span class="missing-label">Gambar ke-2<small>Pastikan file tersedia pada folder artikel ke-1</small></span>
+            <span class="zoom-hint" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path><path d="M11 8v6M8 11h6"></path></svg>
+            </span>
+          </button>
+          <button class="gallery-item" type="button" data-full="publikasi artikel jurnal/2026/artikel ke-1/gambar ke-3.png" aria-label="Perbesar gambar ke-3 artikel ke-1">
+            <img src="publikasi artikel jurnal/2026/artikel ke-1/gambar ke-3.png" alt="Gambar ke-3 untuk artikel Evaluating internet accessibility and equity in Indonesia using integrated SUSENAS and OOKLA data" loading="lazy" onerror="this.closest('.gallery-item').classList.add('image-missing'); this.style.display='none';">
+            <span class="missing-label">Gambar ke-3<small>Pastikan file tersedia pada folder artikel ke-1</small></span>
+            <span class="zoom-hint" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path><path d="M11 8v6M8 11h6"></path></svg>
+            </span>
+          </button>
+        </div>
+
+        <div class="card-actions">
+          <a class="action-btn primary" href="https://link.springer.com/article/10.1007/s43621-026-02882-x" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 5h5v5"></path><path d="m10 14 9-9"></path><path d="M19 13v6H5V5h6"></path></svg>
+            Sumber Artikel
+          </a>
+          <a class="action-btn scopus" href="https://www.scopus.com/pages/publications/105035492903?origin=resultslist" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v14H4z"></path><path d="M8 9h8M8 13h5"></path></svg>
+            Sumber Scopus
+          </a>
+          <a class="action-btn neutral" href="https://www.scimagojr.com/journalsearch.php?q=21101138720&amp;tip=sid&amp;clean=0" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V9M10 19V5M16 19v-7M22 19H2"></path></svg>
+            Scimago
+          </a>
+        </div>
+      </article>
+
+      <article class="publication-card" data-search="remote sensing-based analysis of land use/land cover dynamics and blue carbon assessment in mahakam river delta, indonesia carbon neutrality suhendra widi prayoga, robert kurniawan &amp; prana ugiana gio">
+        <div class="card-topline">
+          <div class="number-badge">02</div>
+          <div class="meta-badges">
+            <span class="year-badge">2026</span>
+            <span class="scopus-badge">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"></path></svg>
+              Scopus
+            </span>
+          </div>
+        </div>
+
+        <div class="journal-label">Carbon Neutrality</div>
+        <h2 class="article-title">Remote sensing-based analysis of land use/land cover dynamics and blue carbon assessment in Mahakam River Delta, Indonesia</h2>
+
+        <div class="author-block">
+          <div class="info-label">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"></circle><path d="M3.5 19c.7-4 2.6-6 5.5-6s4.8 2 5.5 6"></path><path d="M16 8h5M18.5 5.5v5"></path></svg>
+            Author
+          </div>
+          <p>Suhendra Widi Prayoga, Robert Kurniawan &amp; <strong class="author-highlight">Prana Ugiana Gio</strong></p>
+        </div>
+
+        <div class="facts-grid">
+          <div class="fact-box">
+            <span>Author Prana Ugiana Gio</span>
+            <strong>Posisi ke-3</strong>
+          </div>
+          <div class="fact-box">
+            <span>Terindeks Scopus</span>
+            <strong class="yes-text">Ya</strong>
+          </div>
+          <div class="fact-box">
+            <span>Tahun</span>
+            <strong>2026</strong>
+          </div>
+        </div>
+
+        <div class="gallery-heading">
+          <div>
+            <span>Dokumentasi Artikel</span>
+            <small>3 gambar • klik gambar untuk memperbesar</small>
+          </div>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"></rect><circle cx="9" cy="10" r="2"></circle><path d="m4 17 5-4 3 3 3-2 5 4"></path></svg>
+        </div>
+        <div class="image-gallery">
+          <button class="gallery-item" type="button" data-full="publikasi artikel jurnal/2026/artikel ke-2/gambar ke-1.png" aria-label="Perbesar gambar ke-1 artikel ke-2">
+            <img src="publikasi artikel jurnal/2026/artikel ke-2/gambar ke-1.png" alt="Gambar ke-1 untuk artikel Remote sensing-based analysis of land use/land cover dynamics and blue carbon assessment in Mahakam River Delta, Indonesia" loading="lazy" onerror="this.closest('.gallery-item').classList.add('image-missing'); this.style.display='none';">
+            <span class="missing-label">Gambar ke-1<small>Pastikan file tersedia pada folder artikel ke-2</small></span>
+            <span class="zoom-hint" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path><path d="M11 8v6M8 11h6"></path></svg>
+            </span>
+          </button>
+          <button class="gallery-item" type="button" data-full="publikasi artikel jurnal/2026/artikel ke-2/gambar ke-2.png" aria-label="Perbesar gambar ke-2 artikel ke-2">
+            <img src="publikasi artikel jurnal/2026/artikel ke-2/gambar ke-2.png" alt="Gambar ke-2 untuk artikel Remote sensing-based analysis of land use/land cover dynamics and blue carbon assessment in Mahakam River Delta, Indonesia" loading="lazy" onerror="this.closest('.gallery-item').classList.add('image-missing'); this.style.display='none';">
+            <span class="missing-label">Gambar ke-2<small>Pastikan file tersedia pada folder artikel ke-2</small></span>
+            <span class="zoom-hint" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path><path d="M11 8v6M8 11h6"></path></svg>
+            </span>
+          </button>
+          <button class="gallery-item" type="button" data-full="publikasi artikel jurnal/2026/artikel ke-2/gambar ke-3.png" aria-label="Perbesar gambar ke-3 artikel ke-2">
+            <img src="publikasi artikel jurnal/2026/artikel ke-2/gambar ke-3.png" alt="Gambar ke-3 untuk artikel Remote sensing-based analysis of land use/land cover dynamics and blue carbon assessment in Mahakam River Delta, Indonesia" loading="lazy" onerror="this.closest('.gallery-item').classList.add('image-missing'); this.style.display='none';">
+            <span class="missing-label">Gambar ke-3<small>Pastikan file tersedia pada folder artikel ke-2</small></span>
+            <span class="zoom-hint" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path><path d="M11 8v6M8 11h6"></path></svg>
+            </span>
+          </button>
+        </div>
+
+        <div class="card-actions">
+          <a class="action-btn primary" href="https://link.springer.com/article/10.1007/s43979-026-00163-0" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 5h5v5"></path><path d="m10 14 9-9"></path><path d="M19 13v6H5V5h6"></path></svg>
+            Sumber Artikel
+          </a>
+          <a class="action-btn scopus" href="https://www.scopus.com/pages/publications/105027936676?origin=resultslist" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v14H4z"></path><path d="M8 9h8M8 13h5"></path></svg>
+            Sumber Scopus
+          </a>
+          <a class="action-btn neutral" href="https://www.scimagojr.com/journalsearch.php?q=21101126907&amp;tip=sid&amp;clean=0" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V9M10 19V5M16 19v-7M22 19H2"></path></svg>
+            Scimago
+          </a>
+        </div>
+      </article>
+
+      <article class="publication-card" data-search="integrating spatial data science and bayesian inla modeling for waste generation assessment in bali discover sustainability vijaya isnaniawardhani, rezzy eko caraka, iman hernaman, eulis tanti marlina, dudi dudi, cecep firmansyah, aisjah sundawati, prana ugiana gio &amp; bens pardamean">
+        <div class="card-topline">
+          <div class="number-badge">03</div>
+          <div class="meta-badges">
+            <span class="year-badge">2026</span>
+            <span class="scopus-badge">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"></path></svg>
+              Scopus
+            </span>
+          </div>
+        </div>
+
+        <div class="journal-label">Discover Sustainability</div>
+        <h2 class="article-title">Integrating spatial data science and bayesian INLA modeling for waste generation assessment in Bali</h2>
+
+        <div class="author-block">
+          <div class="info-label">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"></circle><path d="M3.5 19c.7-4 2.6-6 5.5-6s4.8 2 5.5 6"></path><path d="M16 8h5M18.5 5.5v5"></path></svg>
+            Author
+          </div>
+          <p>Vijaya Isnaniawardhani, Rezzy Eko Caraka, Iman Hernaman, Eulis Tanti Marlina, Dudi Dudi, Cecep Firmansyah, Aisjah Sundawati, <strong class="author-highlight">Prana Ugiana Gio</strong> &amp; Bens Pardamean</p>
+        </div>
+
+        <div class="facts-grid">
+          <div class="fact-box">
+            <span>Author Prana Ugiana Gio</span>
+            <strong>Posisi ke-8</strong>
+          </div>
+          <div class="fact-box">
+            <span>Terindeks Scopus</span>
+            <strong class="yes-text">Ya</strong>
+          </div>
+          <div class="fact-box">
+            <span>Tahun</span>
+            <strong>2026</strong>
+          </div>
+        </div>
+
+        <div class="gallery-heading">
+          <div>
+            <span>Dokumentasi Artikel</span>
+            <small>3 gambar • klik gambar untuk memperbesar</small>
+          </div>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"></rect><circle cx="9" cy="10" r="2"></circle><path d="m4 17 5-4 3 3 3-2 5 4"></path></svg>
+        </div>
+        <div class="image-gallery">
+          <button class="gallery-item" type="button" data-full="publikasi artikel jurnal/2026/artikel ke-3/gambar ke-1.png" aria-label="Perbesar gambar ke-1 artikel ke-3">
+            <img src="publikasi artikel jurnal/2026/artikel ke-3/gambar ke-1.png" alt="Gambar ke-1 untuk artikel Integrating spatial data science and bayesian INLA modeling for waste generation assessment in Bali" loading="lazy" onerror="this.closest('.gallery-item').classList.add('image-missing'); this.style.display='none';">
+            <span class="missing-label">Gambar ke-1<small>Pastikan file tersedia pada folder artikel ke-3</small></span>
+            <span class="zoom-hint" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path><path d="M11 8v6M8 11h6"></path></svg>
+            </span>
+          </button>
+          <button class="gallery-item" type="button" data-full="publikasi artikel jurnal/2026/artikel ke-3/gambar ke-2.png" aria-label="Perbesar gambar ke-2 artikel ke-3">
+            <img src="publikasi artikel jurnal/2026/artikel ke-3/gambar ke-2.png" alt="Gambar ke-2 untuk artikel Integrating spatial data science and bayesian INLA modeling for waste generation assessment in Bali" loading="lazy" onerror="this.closest('.gallery-item').classList.add('image-missing'); this.style.display='none';">
+            <span class="missing-label">Gambar ke-2<small>Pastikan file tersedia pada folder artikel ke-3</small></span>
+            <span class="zoom-hint" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path><path d="M11 8v6M8 11h6"></path></svg>
+            </span>
+          </button>
+          <button class="gallery-item" type="button" data-full="publikasi artikel jurnal/2026/artikel ke-3/gambar ke-3.png" aria-label="Perbesar gambar ke-3 artikel ke-3">
+            <img src="publikasi artikel jurnal/2026/artikel ke-3/gambar ke-3.png" alt="Gambar ke-3 untuk artikel Integrating spatial data science and bayesian INLA modeling for waste generation assessment in Bali" loading="lazy" onerror="this.closest('.gallery-item').classList.add('image-missing'); this.style.display='none';">
+            <span class="missing-label">Gambar ke-3<small>Pastikan file tersedia pada folder artikel ke-3</small></span>
+            <span class="zoom-hint" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path><path d="M11 8v6M8 11h6"></path></svg>
+            </span>
+          </button>
+        </div>
+
+        <div class="card-actions">
+          <a class="action-btn primary" href="https://link.springer.com/article/10.1007/s43621-025-02424-x" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 5h5v5"></path><path d="m10 14 9-9"></path><path d="M19 13v6H5V5h6"></path></svg>
+            Sumber Artikel
+          </a>
+          <a class="action-btn scopus" href="https://www.scopus.com/pages/publications/105027140445?origin=resultslist" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v14H4z"></path><path d="M8 9h8M8 13h5"></path></svg>
+            Sumber Scopus
+          </a>
+          <a class="action-btn neutral" href="https://www.scimagojr.com/journalsearch.php?q=21101138720&amp;tip=sid&amp;clean=0" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V9M10 19V5M16 19v-7M22 19H2"></path></svg>
+            Scimago
+          </a>
+        </div>
+      </article>
+
+      <article class="publication-card" data-search="the structural barrier to behavioral change: examining the impact of energy poverty on working housewives’ energy-saving behavior and policy efficacy international journal of environmental research robert kurniawan, okky rizky saputra, prana ugiana gio, krismanti tri wahyuni, sri kuswantono wongsonadi &amp; henny herawaty br. dalimunthe">
+        <div class="card-topline">
+          <div class="number-badge">04</div>
+          <div class="meta-badges">
+            <span class="year-badge">2026</span>
+            <span class="scopus-badge">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"></path></svg>
+              Scopus
+            </span>
+          </div>
+        </div>
+
+        <div class="journal-label">International Journal of Environmental Research</div>
+        <h2 class="article-title">The Structural Barrier to Behavioral Change: Examining the Impact of Energy Poverty on Working Housewives’ Energy-Saving Behavior and Policy Efficacy</h2>
+
+        <div class="author-block">
+          <div class="info-label">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"></circle><path d="M3.5 19c.7-4 2.6-6 5.5-6s4.8 2 5.5 6"></path><path d="M16 8h5M18.5 5.5v5"></path></svg>
+            Author
+          </div>
+          <p>Robert Kurniawan, Okky Rizky Saputra, <strong class="author-highlight">Prana Ugiana Gio</strong>, Krismanti Tri Wahyuni, Sri Kuswantono Wongsonadi &amp; Henny Herawaty Br. Dalimunthe</p>
+        </div>
+
+        <div class="facts-grid">
+          <div class="fact-box">
+            <span>Author Prana Ugiana Gio</span>
+            <strong>Posisi ke-3</strong>
+          </div>
+          <div class="fact-box">
+            <span>Terindeks Scopus</span>
+            <strong class="yes-text">Ya</strong>
+          </div>
+          <div class="fact-box">
+            <span>Tahun</span>
+            <strong>2026</strong>
+          </div>
+        </div>
+
+        <div class="gallery-heading">
+          <div>
+            <span>Dokumentasi Artikel</span>
+            <small>3 gambar • klik gambar untuk memperbesar</small>
+          </div>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"></rect><circle cx="9" cy="10" r="2"></circle><path d="m4 17 5-4 3 3 3-2 5 4"></path></svg>
+        </div>
+        <div class="image-gallery">
+          <button class="gallery-item" type="button" data-full="publikasi artikel jurnal/2026/artikel ke-4/gambar ke-1.png" aria-label="Perbesar gambar ke-1 artikel ke-4">
+            <img src="publikasi artikel jurnal/2026/artikel ke-4/gambar ke-1.png" alt="Gambar ke-1 untuk artikel The Structural Barrier to Behavioral Change: Examining the Impact of Energy Poverty on Working Housewives’ Energy-Saving Behavior and Policy Efficacy" loading="lazy" onerror="this.closest('.gallery-item').classList.add('image-missing'); this.style.display='none';">
+            <span class="missing-label">Gambar ke-1<small>Pastikan file tersedia pada folder artikel ke-4</small></span>
+            <span class="zoom-hint" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path><path d="M11 8v6M8 11h6"></path></svg>
+            </span>
+          </button>
+          <button class="gallery-item" type="button" data-full="publikasi artikel jurnal/2026/artikel ke-4/gambar ke-2.png" aria-label="Perbesar gambar ke-2 artikel ke-4">
+            <img src="publikasi artikel jurnal/2026/artikel ke-4/gambar ke-2.png" alt="Gambar ke-2 untuk artikel The Structural Barrier to Behavioral Change: Examining the Impact of Energy Poverty on Working Housewives’ Energy-Saving Behavior and Policy Efficacy" loading="lazy" onerror="this.closest('.gallery-item').classList.add('image-missing'); this.style.display='none';">
+            <span class="missing-label">Gambar ke-2<small>Pastikan file tersedia pada folder artikel ke-4</small></span>
+            <span class="zoom-hint" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path><path d="M11 8v6M8 11h6"></path></svg>
+            </span>
+          </button>
+          <button class="gallery-item" type="button" data-full="publikasi artikel jurnal/2026/artikel ke-4/gambar ke-3.png" aria-label="Perbesar gambar ke-3 artikel ke-4">
+            <img src="publikasi artikel jurnal/2026/artikel ke-4/gambar ke-3.png" alt="Gambar ke-3 untuk artikel The Structural Barrier to Behavioral Change: Examining the Impact of Energy Poverty on Working Housewives’ Energy-Saving Behavior and Policy Efficacy" loading="lazy" onerror="this.closest('.gallery-item').classList.add('image-missing'); this.style.display='none';">
+            <span class="missing-label">Gambar ke-3<small>Pastikan file tersedia pada folder artikel ke-4</small></span>
+            <span class="zoom-hint" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path><path d="M11 8v6M8 11h6"></path></svg>
+            </span>
+          </button>
+        </div>
+
+        <div class="card-actions">
+          <a class="action-btn primary" href="https://link.springer.com/article/10.1007/s41742-026-01202-5" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 5h5v5"></path><path d="m10 14 9-9"></path><path d="M19 13v6H5V5h6"></path></svg>
+            Sumber Artikel
+          </a>
+          <a class="action-btn scopus" href="https://www.scopus.com/pages/publications/105045245052?origin=resultslist" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v14H4z"></path><path d="M8 9h8M8 13h5"></path></svg>
+            Sumber Scopus
+          </a>
+          <a class="action-btn neutral" href="https://www.scimagojr.com/journalsearch.php?q=11500153412&amp;tip=sid&amp;clean=0" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V9M10 19V5M16 19v-7M22 19H2"></path></svg>
+            Scimago
+          </a>
+        </div>
+      </article>
+
+      <article class="publication-card" data-search="clustering vulnerable areas of improved drinking water sources in indonesia: fuzzy geographically weighted clustering approach physics and chemistry of the earth sri kuswantono wongsonadi, robert kurniawan, arya candra kusuma, hikmah, nararia hutama putra, prana ugiana gio, sisean baga, ricky yordani">
+        <div class="card-topline">
+          <div class="number-badge">05</div>
+          <div class="meta-badges">
+            <span class="year-badge">2026</span>
+            <span class="scopus-badge">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"></path></svg>
+              Scopus
+            </span>
+          </div>
+        </div>
+
+        <div class="journal-label">Physics and Chemistry of the Earth</div>
+        <h2 class="article-title">Clustering vulnerable areas of improved drinking water sources in Indonesia: Fuzzy geographically weighted clustering approach</h2>
+
+        <div class="author-block">
+          <div class="info-label">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"></circle><path d="M3.5 19c.7-4 2.6-6 5.5-6s4.8 2 5.5 6"></path><path d="M16 8h5M18.5 5.5v5"></path></svg>
+            Author
+          </div>
+          <p>Sri Kuswantono Wongsonadi, Robert Kurniawan, Arya Candra Kusuma, Hikmah, Nararia Hutama Putra, <strong class="author-highlight">Prana Ugiana Gio</strong>, Sisean Baga, Ricky Yordani</p>
+        </div>
+
+        <div class="facts-grid">
+          <div class="fact-box">
+            <span>Author Prana Ugiana Gio</span>
+            <strong>Posisi ke-6</strong>
+          </div>
+          <div class="fact-box">
+            <span>Terindeks Scopus</span>
+            <strong class="yes-text">Ya</strong>
+          </div>
+          <div class="fact-box">
+            <span>Tahun</span>
+            <strong>2026</strong>
+          </div>
+        </div>
+
+        <div class="gallery-heading">
+          <div>
+            <span>Dokumentasi Artikel</span>
+            <small>3 gambar • klik gambar untuk memperbesar</small>
+          </div>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"></rect><circle cx="9" cy="10" r="2"></circle><path d="m4 17 5-4 3 3 3-2 5 4"></path></svg>
+        </div>
+        <div class="image-gallery">
+          <button class="gallery-item" type="button" data-full="publikasi artikel jurnal/2026/artikel ke-5/gambar ke-1.png" aria-label="Perbesar gambar ke-1 artikel ke-5">
+            <img src="publikasi artikel jurnal/2026/artikel ke-5/gambar ke-1.png" alt="Gambar ke-1 untuk artikel Clustering vulnerable areas of improved drinking water sources in Indonesia: Fuzzy geographically weighted clustering approach" loading="lazy" onerror="this.closest('.gallery-item').classList.add('image-missing'); this.style.display='none';">
+            <span class="missing-label">Gambar ke-1<small>Pastikan file tersedia pada folder artikel ke-5</small></span>
+            <span class="zoom-hint" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path><path d="M11 8v6M8 11h6"></path></svg>
+            </span>
+          </button>
+          <button class="gallery-item" type="button" data-full="publikasi artikel jurnal/2026/artikel ke-5/gambar ke-2.png" aria-label="Perbesar gambar ke-2 artikel ke-5">
+            <img src="publikasi artikel jurnal/2026/artikel ke-5/gambar ke-2.png" alt="Gambar ke-2 untuk artikel Clustering vulnerable areas of improved drinking water sources in Indonesia: Fuzzy geographically weighted clustering approach" loading="lazy" onerror="this.closest('.gallery-item').classList.add('image-missing'); this.style.display='none';">
+            <span class="missing-label">Gambar ke-2<small>Pastikan file tersedia pada folder artikel ke-5</small></span>
+            <span class="zoom-hint" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path><path d="M11 8v6M8 11h6"></path></svg>
+            </span>
+          </button>
+          <button class="gallery-item" type="button" data-full="publikasi artikel jurnal/2026/artikel ke-5/gambar ke-3.png" aria-label="Perbesar gambar ke-3 artikel ke-5">
+            <img src="publikasi artikel jurnal/2026/artikel ke-5/gambar ke-3.png" alt="Gambar ke-3 untuk artikel Clustering vulnerable areas of improved drinking water sources in Indonesia: Fuzzy geographically weighted clustering approach" loading="lazy" onerror="this.closest('.gallery-item').classList.add('image-missing'); this.style.display='none';">
+            <span class="missing-label">Gambar ke-3<small>Pastikan file tersedia pada folder artikel ke-5</small></span>
+            <span class="zoom-hint" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path><path d="M11 8v6M8 11h6"></path></svg>
+            </span>
+          </button>
+        </div>
+
+        <div class="card-actions">
+          <a class="action-btn primary" href="https://www.sciencedirect.com/science/article/pii/S1474706526002081?via%3Dihub" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 5h5v5"></path><path d="m10 14 9-9"></path><path d="M19 13v6H5V5h6"></path></svg>
+            Sumber Artikel
+          </a>
+          <a class="action-btn scopus" href="https://www.sciencedirect.com/science/article/pii/S1474706526002081?via%3Dihub" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v14H4z"></path><path d="M8 9h8M8 13h5"></path></svg>
+            Sumber Scopus
+          </a>
+          <a class="action-btn neutral" href="https://www.scimagojr.com/journalsearch.php?q=23315&amp;tip=sid&amp;clean=0" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V9M10 19V5M16 19v-7M22 19H2"></path></svg>
+            Scimago
+          </a>
+        </div>
+      </article>
+
+      <article class="publication-card" data-search="industrial activity, traffic congestion, and health vulnerability in java, indonesia: a spatial spillover analysis environmental science and pollution research anas rulloh budi alamsyah, robert kurniawan, henny herawaty br. dalimunthe, fitri kartiasih, hikmah hikmah, prana ugiana gio, fitri hariyanti, nafasha fairly ikhlasia &amp; gama putra danu sohibien">
+        <div class="card-topline">
+          <div class="number-badge">06</div>
+          <div class="meta-badges">
+            <span class="year-badge">2026</span>
+            <span class="scopus-badge">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"></path></svg>
+              Scopus
+            </span>
+          </div>
+        </div>
+
+        <div class="journal-label">Environmental Science and Pollution Research</div>
+        <h2 class="article-title">Industrial activity, traffic congestion, and health vulnerability in Java, Indonesia: a spatial spillover analysis</h2>
+
+        <div class="author-block">
+          <div class="info-label">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"></circle><path d="M3.5 19c.7-4 2.6-6 5.5-6s4.8 2 5.5 6"></path><path d="M16 8h5M18.5 5.5v5"></path></svg>
+            Author
+          </div>
+          <p>Anas Rulloh Budi Alamsyah, Robert Kurniawan, Henny Herawaty Br. Dalimunthe, Fitri Kartiasih, Hikmah Hikmah, <strong class="author-highlight">Prana Ugiana Gio</strong>, Fitri Hariyanti, Nafasha Fairly Ikhlasia &amp; Gama Putra Danu Sohibien</p>
+        </div>
+
+        <div class="facts-grid">
+          <div class="fact-box">
+            <span>Author Prana Ugiana Gio</span>
+            <strong>Posisi ke-6</strong>
+          </div>
+          <div class="fact-box">
+            <span>Terindeks Scopus</span>
+            <strong class="yes-text">Ya</strong>
+          </div>
+          <div class="fact-box">
+            <span>Tahun</span>
+            <strong>2026</strong>
+          </div>
+        </div>
+
+        <div class="gallery-heading">
+          <div>
+            <span>Dokumentasi Artikel</span>
+            <small>3 gambar • klik gambar untuk memperbesar</small>
+          </div>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"></rect><circle cx="9" cy="10" r="2"></circle><path d="m4 17 5-4 3 3 3-2 5 4"></path></svg>
+        </div>
+        <div class="image-gallery">
+          <button class="gallery-item" type="button" data-full="publikasi artikel jurnal/2026/artikel ke-6/gambar ke-1.png" aria-label="Perbesar gambar ke-1 artikel ke-6">
+            <img src="publikasi artikel jurnal/2026/artikel ke-6/gambar ke-1.png" alt="Gambar ke-1 untuk artikel Industrial activity, traffic congestion, and health vulnerability in Java, Indonesia: a spatial spillover analysis" loading="lazy" onerror="this.closest('.gallery-item').classList.add('image-missing'); this.style.display='none';">
+            <span class="missing-label">Gambar ke-1<small>Pastikan file tersedia pada folder artikel ke-6</small></span>
+            <span class="zoom-hint" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path><path d="M11 8v6M8 11h6"></path></svg>
+            </span>
+          </button>
+          <button class="gallery-item" type="button" data-full="publikasi artikel jurnal/2026/artikel ke-6/gambar ke-2.png" aria-label="Perbesar gambar ke-2 artikel ke-6">
+            <img src="publikasi artikel jurnal/2026/artikel ke-6/gambar ke-2.png" alt="Gambar ke-2 untuk artikel Industrial activity, traffic congestion, and health vulnerability in Java, Indonesia: a spatial spillover analysis" loading="lazy" onerror="this.closest('.gallery-item').classList.add('image-missing'); this.style.display='none';">
+            <span class="missing-label">Gambar ke-2<small>Pastikan file tersedia pada folder artikel ke-6</small></span>
+            <span class="zoom-hint" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path><path d="M11 8v6M8 11h6"></path></svg>
+            </span>
+          </button>
+          <button class="gallery-item" type="button" data-full="publikasi artikel jurnal/2026/artikel ke-6/gambar ke-3.png" aria-label="Perbesar gambar ke-3 artikel ke-6">
+            <img src="publikasi artikel jurnal/2026/artikel ke-6/gambar ke-3.png" alt="Gambar ke-3 untuk artikel Industrial activity, traffic congestion, and health vulnerability in Java, Indonesia: a spatial spillover analysis" loading="lazy" onerror="this.closest('.gallery-item').classList.add('image-missing'); this.style.display='none';">
+            <span class="missing-label">Gambar ke-3<small>Pastikan file tersedia pada folder artikel ke-6</small></span>
+            <span class="zoom-hint" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path><path d="M11 8v6M8 11h6"></path></svg>
+            </span>
+          </button>
+        </div>
+
+        <div class="card-actions">
+          <a class="action-btn primary" href="https://link.springer.com/article/10.1007/s11356-026-38148-2" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 5h5v5"></path><path d="m10 14 9-9"></path><path d="M19 13v6H5V5h6"></path></svg>
+            Sumber Artikel
+          </a>
+          <a class="action-btn scopus" href="https://www.scopus.com/pages/publications/105047439590?origin=resultslist" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v14H4z"></path><path d="M8 9h8M8 13h5"></path></svg>
+            Sumber Scopus
+          </a>
+          <a class="action-btn neutral" href="https://www.scimagojr.com/journalsearch.php?q=23918&amp;tip=sid&amp;clean=0" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V9M10 19V5M16 19v-7M22 19H2"></path></svg>
+            Scimago
+          </a>
+        </div>
+      </article>
+
+      <article class="publication-card" data-search="does the entrepreneurship environment in higher education give entrepreneurial intent to start a business? evidence from universities in indonesia international journal of management education pahrudin pahrudin, li-wei liu, rezzy eko caraka, adin gustina, nur anita yunikawati, prana ugiana gio, cheng-yu tsai">
+        <div class="card-topline">
+          <div class="number-badge">07</div>
+          <div class="meta-badges">
+            <span class="year-badge">2026</span>
+            <span class="scopus-badge">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"></path></svg>
+              Scopus
+            </span>
+          </div>
+        </div>
+
+        <div class="journal-label">International Journal of Management Education</div>
+        <h2 class="article-title">Does the entrepreneurship environment in higher education give entrepreneurial intent to start a Business? Evidence from universities in Indonesia</h2>
+
+        <div class="author-block">
+          <div class="info-label">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"></circle><path d="M3.5 19c.7-4 2.6-6 5.5-6s4.8 2 5.5 6"></path><path d="M16 8h5M18.5 5.5v5"></path></svg>
+            Author
+          </div>
+          <p>Pahrudin Pahrudin, Li-Wei Liu, Rezzy Eko Caraka, Adin Gustina, Nur Anita Yunikawati, <strong class="author-highlight">Prana Ugiana Gio</strong>, Cheng-Yu Tsai</p>
+        </div>
+
+        <div class="facts-grid">
+          <div class="fact-box">
+            <span>Author Prana Ugiana Gio</span>
+            <strong>Posisi ke-6</strong>
+          </div>
+          <div class="fact-box">
+            <span>Terindeks Scopus</span>
+            <strong class="yes-text">Ya</strong>
+          </div>
+          <div class="fact-box">
+            <span>Tahun</span>
+            <strong>2026</strong>
+          </div>
+        </div>
+
+        <div class="gallery-heading">
+          <div>
+            <span>Dokumentasi Artikel</span>
+            <small>3 gambar • klik gambar untuk memperbesar</small>
+          </div>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"></rect><circle cx="9" cy="10" r="2"></circle><path d="m4 17 5-4 3 3 3-2 5 4"></path></svg>
+        </div>
+        <div class="image-gallery">
+          <button class="gallery-item" type="button" data-full="publikasi artikel jurnal/2026/artikel ke-7/gambar ke-1.png" aria-label="Perbesar gambar ke-1 artikel ke-7">
+            <img src="publikasi artikel jurnal/2026/artikel ke-7/gambar ke-1.png" alt="Gambar ke-1 untuk artikel Does the entrepreneurship environment in higher education give entrepreneurial intent to start a Business? Evidence from universities in Indonesia" loading="lazy" onerror="this.closest('.gallery-item').classList.add('image-missing'); this.style.display='none';">
+            <span class="missing-label">Gambar ke-1<small>Pastikan file tersedia pada folder artikel ke-7</small></span>
+            <span class="zoom-hint" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path><path d="M11 8v6M8 11h6"></path></svg>
+            </span>
+          </button>
+          <button class="gallery-item" type="button" data-full="publikasi artikel jurnal/2026/artikel ke-7/gambar ke-2.png" aria-label="Perbesar gambar ke-2 artikel ke-7">
+            <img src="publikasi artikel jurnal/2026/artikel ke-7/gambar ke-2.png" alt="Gambar ke-2 untuk artikel Does the entrepreneurship environment in higher education give entrepreneurial intent to start a Business? Evidence from universities in Indonesia" loading="lazy" onerror="this.closest('.gallery-item').classList.add('image-missing'); this.style.display='none';">
+            <span class="missing-label">Gambar ke-2<small>Pastikan file tersedia pada folder artikel ke-7</small></span>
+            <span class="zoom-hint" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path><path d="M11 8v6M8 11h6"></path></svg>
+            </span>
+          </button>
+          <button class="gallery-item" type="button" data-full="publikasi artikel jurnal/2026/artikel ke-7/gambar ke-3.png" aria-label="Perbesar gambar ke-3 artikel ke-7">
+            <img src="publikasi artikel jurnal/2026/artikel ke-7/gambar ke-3.png" alt="Gambar ke-3 untuk artikel Does the entrepreneurship environment in higher education give entrepreneurial intent to start a Business? Evidence from universities in Indonesia" loading="lazy" onerror="this.closest('.gallery-item').classList.add('image-missing'); this.style.display='none';">
+            <span class="missing-label">Gambar ke-3<small>Pastikan file tersedia pada folder artikel ke-7</small></span>
+            <span class="zoom-hint" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path><path d="M11 8v6M8 11h6"></path></svg>
+            </span>
+          </button>
+        </div>
+
+        <div class="card-actions">
+          <a class="action-btn primary" href="https://www.sciencedirect.com/science/article/pii/S147281172600025X?via%3Dihub" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 5h5v5"></path><path d="m10 14 9-9"></path><path d="M19 13v6H5V5h6"></path></svg>
+            Sumber Artikel
+          </a>
+          <a class="action-btn scopus" href="https://www.scopus.com/pages/publications/105030290205?origin=resultslist" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v14H4z"></path><path d="M8 9h8M8 13h5"></path></svg>
+            Sumber Scopus
+          </a>
+          <a class="action-btn neutral" href="https://www.scimagojr.com/journalsearch.php?q=21100206607&amp;tip=sid&amp;clean=0" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V9M10 19V5M16 19v-7M22 19H2"></path></svg>
+            Scimago
+          </a>
+        </div>
+      </article>
+
+      <article class="publication-card" data-search="metaheuristic nurse scheduling with hospital clustering using flower pollination algorithm bulletin of electrical engineering and informatics muhammad khahfi zuhanda, hartono, sayuti rahman, prana ugiana gio, erianto ongko">
+        <div class="card-topline">
+          <div class="number-badge">08</div>
+          <div class="meta-badges">
+            <span class="year-badge">2026</span>
+            <span class="scopus-badge">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"></path></svg>
+              Scopus
+            </span>
+          </div>
+        </div>
+
+        <div class="journal-label">Bulletin of Electrical Engineering and Informatics</div>
+        <h2 class="article-title">Metaheuristic nurse scheduling with hospital clustering using flower pollination algorithm</h2>
+
+        <div class="author-block">
+          <div class="info-label">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"></circle><path d="M3.5 19c.7-4 2.6-6 5.5-6s4.8 2 5.5 6"></path><path d="M16 8h5M18.5 5.5v5"></path></svg>
+            Author
+          </div>
+          <p>Muhammad Khahfi Zuhanda, Hartono, Sayuti Rahman, <strong class="author-highlight">Prana Ugiana Gio</strong>, Erianto Ongko</p>
+        </div>
+
+        <div class="facts-grid">
+          <div class="fact-box">
+            <span>Author Prana Ugiana Gio</span>
+            <strong>Posisi ke-4</strong>
+          </div>
+          <div class="fact-box">
+            <span>Terindeks Scopus</span>
+            <strong class="yes-text">Ya</strong>
+          </div>
+          <div class="fact-box">
+            <span>Tahun</span>
+            <strong>2026</strong>
+          </div>
+        </div>
+
+        <div class="gallery-heading">
+          <div>
+            <span>Dokumentasi Artikel</span>
+            <small>3 gambar • klik gambar untuk memperbesar</small>
+          </div>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"></rect><circle cx="9" cy="10" r="2"></circle><path d="m4 17 5-4 3 3 3-2 5 4"></path></svg>
+        </div>
+        <div class="image-gallery">
+          <button class="gallery-item" type="button" data-full="publikasi artikel jurnal/2026/artikel ke-8/gambar ke-1.png" aria-label="Perbesar gambar ke-1 artikel ke-8">
+            <img src="publikasi artikel jurnal/2026/artikel ke-8/gambar ke-1.png" alt="Gambar ke-1 untuk artikel Metaheuristic nurse scheduling with hospital clustering using flower pollination algorithm" loading="lazy" onerror="this.closest('.gallery-item').classList.add('image-missing'); this.style.display='none';">
+            <span class="missing-label">Gambar ke-1<small>Pastikan file tersedia pada folder artikel ke-8</small></span>
+            <span class="zoom-hint" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path><path d="M11 8v6M8 11h6"></path></svg>
+            </span>
+          </button>
+          <button class="gallery-item" type="button" data-full="publikasi artikel jurnal/2026/artikel ke-8/gambar ke-2.png" aria-label="Perbesar gambar ke-2 artikel ke-8">
+            <img src="publikasi artikel jurnal/2026/artikel ke-8/gambar ke-2.png" alt="Gambar ke-2 untuk artikel Metaheuristic nurse scheduling with hospital clustering using flower pollination algorithm" loading="lazy" onerror="this.closest('.gallery-item').classList.add('image-missing'); this.style.display='none';">
+            <span class="missing-label">Gambar ke-2<small>Pastikan file tersedia pada folder artikel ke-8</small></span>
+            <span class="zoom-hint" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path><path d="M11 8v6M8 11h6"></path></svg>
+            </span>
+          </button>
+          <button class="gallery-item" type="button" data-full="publikasi artikel jurnal/2026/artikel ke-8/gambar ke-3.png" aria-label="Perbesar gambar ke-3 artikel ke-8">
+            <img src="publikasi artikel jurnal/2026/artikel ke-8/gambar ke-3.png" alt="Gambar ke-3 untuk artikel Metaheuristic nurse scheduling with hospital clustering using flower pollination algorithm" loading="lazy" onerror="this.closest('.gallery-item').classList.add('image-missing'); this.style.display='none';">
+            <span class="missing-label">Gambar ke-3<small>Pastikan file tersedia pada folder artikel ke-8</small></span>
+            <span class="zoom-hint" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path><path d="M11 8v6M8 11h6"></path></svg>
+            </span>
+          </button>
+        </div>
+
+        <div class="card-actions">
+          <a class="action-btn primary" href="https://beei.org/index.php/EEI/article/view/11243" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 5h5v5"></path><path d="m10 14 9-9"></path><path d="M19 13v6H5V5h6"></path></svg>
+            Sumber Artikel
+          </a>
+          <a class="action-btn scopus" href="https://www.scopus.com/pages/publications/105041519054?origin=resultslist" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v14H4z"></path><path d="M8 9h8M8 13h5"></path></svg>
+            Sumber Scopus
+          </a>
+          <a class="action-btn neutral" href="https://www.scimagojr.com/journalsearch.php?q=21100826382&amp;tip=sid&amp;clean=0" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V9M10 19V5M16 19v-7M22 19H2"></path></svg>
+            Scimago
+          </a>
+        </div>
+      </article>
+
+      <article class="publication-card" data-search="traditional ecological knowledge as a bi-functional sustainability mechanism in bali: reducing agrochemicals and securing rice yields sustainable futures robert kurniawan, anas rulloh budi alamsyah, prana ugiana gio, budiaman, tri mulyaningsih, mohamad andrian isnaeni, agus muslim">
+        <div class="card-topline">
+          <div class="number-badge">09</div>
+          <div class="meta-badges">
+            <span class="year-badge">2026</span>
+            <span class="scopus-badge">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"></path></svg>
+              Scopus
+            </span>
+          </div>
+        </div>
+
+        <div class="journal-label">Sustainable Futures</div>
+        <h2 class="article-title">Traditional ecological knowledge as a bi-functional sustainability mechanism in Bali: Reducing agrochemicals and securing rice yields</h2>
+
+        <div class="author-block">
+          <div class="info-label">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"></circle><path d="M3.5 19c.7-4 2.6-6 5.5-6s4.8 2 5.5 6"></path><path d="M16 8h5M18.5 5.5v5"></path></svg>
+            Author
+          </div>
+          <p>Robert Kurniawan, Anas Rulloh Budi Alamsyah, <strong class="author-highlight">Prana Ugiana Gio</strong>, Budiaman, Tri Mulyaningsih, Mohamad Andrian Isnaeni, Agus Muslim</p>
+        </div>
+
+        <div class="facts-grid">
+          <div class="fact-box">
+            <span>Author Prana Ugiana Gio</span>
+            <strong>Posisi ke-3</strong>
+          </div>
+          <div class="fact-box">
+            <span>Terindeks Scopus</span>
+            <strong class="yes-text">Ya</strong>
+          </div>
+          <div class="fact-box">
+            <span>Tahun</span>
+            <strong>2026</strong>
+          </div>
+        </div>
+
+        <div class="gallery-heading">
+          <div>
+            <span>Dokumentasi Artikel</span>
+            <small>3 gambar • klik gambar untuk memperbesar</small>
+          </div>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"></rect><circle cx="9" cy="10" r="2"></circle><path d="m4 17 5-4 3 3 3-2 5 4"></path></svg>
+        </div>
+        <div class="image-gallery">
+          <button class="gallery-item" type="button" data-full="publikasi artikel jurnal/2026/artikel ke-9/gambar ke-1.png" aria-label="Perbesar gambar ke-1 artikel ke-9">
+            <img src="publikasi artikel jurnal/2026/artikel ke-9/gambar ke-1.png" alt="Gambar ke-1 untuk artikel Traditional ecological knowledge as a bi-functional sustainability mechanism in Bali: Reducing agrochemicals and securing rice yields" loading="lazy" onerror="this.closest('.gallery-item').classList.add('image-missing'); this.style.display='none';">
+            <span class="missing-label">Gambar ke-1<small>Pastikan file tersedia pada folder artikel ke-9</small></span>
+            <span class="zoom-hint" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path><path d="M11 8v6M8 11h6"></path></svg>
+            </span>
+          </button>
+          <button class="gallery-item" type="button" data-full="publikasi artikel jurnal/2026/artikel ke-9/gambar ke-2.png" aria-label="Perbesar gambar ke-2 artikel ke-9">
+            <img src="publikasi artikel jurnal/2026/artikel ke-9/gambar ke-2.png" alt="Gambar ke-2 untuk artikel Traditional ecological knowledge as a bi-functional sustainability mechanism in Bali: Reducing agrochemicals and securing rice yields" loading="lazy" onerror="this.closest('.gallery-item').classList.add('image-missing'); this.style.display='none';">
+            <span class="missing-label">Gambar ke-2<small>Pastikan file tersedia pada folder artikel ke-9</small></span>
+            <span class="zoom-hint" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path><path d="M11 8v6M8 11h6"></path></svg>
+            </span>
+          </button>
+          <button class="gallery-item" type="button" data-full="publikasi artikel jurnal/2026/artikel ke-9/gambar ke-3.png" aria-label="Perbesar gambar ke-3 artikel ke-9">
+            <img src="publikasi artikel jurnal/2026/artikel ke-9/gambar ke-3.png" alt="Gambar ke-3 untuk artikel Traditional ecological knowledge as a bi-functional sustainability mechanism in Bali: Reducing agrochemicals and securing rice yields" loading="lazy" onerror="this.closest('.gallery-item').classList.add('image-missing'); this.style.display='none';">
+            <span class="missing-label">Gambar ke-3<small>Pastikan file tersedia pada folder artikel ke-9</small></span>
+            <span class="zoom-hint" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path><path d="M11 8v6M8 11h6"></path></svg>
+            </span>
+          </button>
+        </div>
+
+        <div class="card-actions">
+          <a class="action-btn primary" href="https://www.sciencedirect.com/science/article/pii/S2666188826001760?via%3Dihub" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 5h5v5"></path><path d="m10 14 9-9"></path><path d="M19 13v6H5V5h6"></path></svg>
+            Sumber Artikel
+          </a>
+          <a class="action-btn scopus" href="https://www.scopus.com/pages/publications/105034673314?origin=resultslist" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v14H4z"></path><path d="M8 9h8M8 13h5"></path></svg>
+            Sumber Scopus
+          </a>
+          <a class="action-btn neutral" href="https://www.scimagojr.com/journalsearch.php?q=21101065044&amp;tip=sid&amp;clean=0" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V9M10 19V5M16 19v-7M22 19H2"></path></svg>
+            Scimago
+          </a>
+        </div>
+      </article>
+
+      <article class="publication-card" data-search="remote sensing-based early warning for agricultural flood damage mitigation in recurrent flood-prone areas natural hazard imam sujono, robert kurniawan, prana ugiana gio, rezzy eko caraka &amp; sri kuswantono wongsonadi">
+        <div class="card-topline">
+          <div class="number-badge">10</div>
+          <div class="meta-badges">
+            <span class="year-badge">2026</span>
+            <span class="scopus-badge">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"></path></svg>
+              Scopus
+            </span>
+          </div>
+        </div>
+
+        <div class="journal-label">Natural Hazard</div>
+        <h2 class="article-title">Remote sensing-based early warning for agricultural flood damage mitigation in recurrent flood-prone areas</h2>
+
+        <div class="author-block">
+          <div class="info-label">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"></circle><path d="M3.5 19c.7-4 2.6-6 5.5-6s4.8 2 5.5 6"></path><path d="M16 8h5M18.5 5.5v5"></path></svg>
+            Author
+          </div>
+          <p>Imam Sujono, Robert Kurniawan, <strong class="author-highlight">Prana Ugiana Gio</strong>, Rezzy Eko Caraka &amp; Sri Kuswantono Wongsonadi</p>
+        </div>
+
+        <div class="facts-grid">
+          <div class="fact-box">
+            <span>Author Prana Ugiana Gio</span>
+            <strong>Posisi ke-3</strong>
+          </div>
+          <div class="fact-box">
+            <span>Terindeks Scopus</span>
+            <strong class="yes-text">Ya</strong>
+          </div>
+          <div class="fact-box">
+            <span>Tahun</span>
+            <strong>2026</strong>
+          </div>
+        </div>
+
+        <div class="gallery-heading">
+          <div>
+            <span>Dokumentasi Artikel</span>
+            <small>3 gambar • klik gambar untuk memperbesar</small>
+          </div>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"></rect><circle cx="9" cy="10" r="2"></circle><path d="m4 17 5-4 3 3 3-2 5 4"></path></svg>
+        </div>
+        <div class="image-gallery">
+          <button class="gallery-item" type="button" data-full="publikasi artikel jurnal/2026/artikel ke-10/gambar ke-1.png" aria-label="Perbesar gambar ke-1 artikel ke-10">
+            <img src="publikasi artikel jurnal/2026/artikel ke-10/gambar ke-1.png" alt="Gambar ke-1 untuk artikel Remote sensing-based early warning for agricultural flood damage mitigation in recurrent flood-prone areas" loading="lazy" onerror="this.closest('.gallery-item').classList.add('image-missing'); this.style.display='none';">
+            <span class="missing-label">Gambar ke-1<small>Pastikan file tersedia pada folder artikel ke-10</small></span>
+            <span class="zoom-hint" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path><path d="M11 8v6M8 11h6"></path></svg>
+            </span>
+          </button>
+          <button class="gallery-item" type="button" data-full="publikasi artikel jurnal/2026/artikel ke-10/gambar ke-2.png" aria-label="Perbesar gambar ke-2 artikel ke-10">
+            <img src="publikasi artikel jurnal/2026/artikel ke-10/gambar ke-2.png" alt="Gambar ke-2 untuk artikel Remote sensing-based early warning for agricultural flood damage mitigation in recurrent flood-prone areas" loading="lazy" onerror="this.closest('.gallery-item').classList.add('image-missing'); this.style.display='none';">
+            <span class="missing-label">Gambar ke-2<small>Pastikan file tersedia pada folder artikel ke-10</small></span>
+            <span class="zoom-hint" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path><path d="M11 8v6M8 11h6"></path></svg>
+            </span>
+          </button>
+          <button class="gallery-item" type="button" data-full="publikasi artikel jurnal/2026/artikel ke-10/gambar ke-3.png" aria-label="Perbesar gambar ke-3 artikel ke-10">
+            <img src="publikasi artikel jurnal/2026/artikel ke-10/gambar ke-3.png" alt="Gambar ke-3 untuk artikel Remote sensing-based early warning for agricultural flood damage mitigation in recurrent flood-prone areas" loading="lazy" onerror="this.closest('.gallery-item').classList.add('image-missing'); this.style.display='none';">
+            <span class="missing-label">Gambar ke-3<small>Pastikan file tersedia pada folder artikel ke-10</small></span>
+            <span class="zoom-hint" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path><path d="M11 8v6M8 11h6"></path></svg>
+            </span>
+          </button>
+        </div>
+
+        <div class="card-actions">
+          <a class="action-btn primary" href="https://link.springer.com/article/10.1007/s11069-026-08046-4" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 5h5v5"></path><path d="m10 14 9-9"></path><path d="M19 13v6H5V5h6"></path></svg>
+            Sumber Artikel
+          </a>
+          <a class="action-btn scopus" href="https://www.scopus.com/pages/publications/105035093042?origin=resultslist" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v14H4z"></path><path d="M8 9h8M8 13h5"></path></svg>
+            Sumber Scopus
+          </a>
+          <a class="action-btn neutral" href="https://www.scimagojr.com/journalsearch.php?q=23282&amp;tip=sid&amp;clean=0" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V9M10 19V5M16 19v-7M22 19H2"></path></svg>
+            Scimago
+          </a>
+        </div>
+      </article>
+
+      <article class="publication-card" data-search="fuzzy logic approach to forest fire risk assessment in tanjung putting national park barekeng rani natalia purba, esther sorta mauli nababan, prana ugiana gio, zahedi, muhammad romi syahputra">
+        <div class="card-topline">
+          <div class="number-badge">11</div>
+          <div class="meta-badges">
+            <span class="year-badge">2026</span>
+            <span class="scopus-badge">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"></path></svg>
+              Scopus
+            </span>
+          </div>
+        </div>
+
+        <div class="journal-label">Barekeng</div>
+        <h2 class="article-title">FUZZY LOGIC APPROACH TO FOREST FIRE RISK ASSESSMENT IN TANJUNG PUTTING NATIONAL PARK</h2>
+
+        <div class="author-block">
+          <div class="info-label">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"></circle><path d="M3.5 19c.7-4 2.6-6 5.5-6s4.8 2 5.5 6"></path><path d="M16 8h5M18.5 5.5v5"></path></svg>
+            Author
+          </div>
+          <p>Rani Natalia Purba, Esther Sorta Mauli Nababan, <strong class="author-highlight">Prana Ugiana Gio</strong>, Zahedi, Muhammad Romi Syahputra</p>
+        </div>
+
+        <div class="facts-grid">
+          <div class="fact-box">
+            <span>Author Prana Ugiana Gio</span>
+            <strong>Posisi ke-3</strong>
+          </div>
+          <div class="fact-box">
+            <span>Terindeks Scopus</span>
+            <strong class="yes-text">Ya</strong>
+          </div>
+          <div class="fact-box">
+            <span>Tahun</span>
+            <strong>2026</strong>
+          </div>
+        </div>
+
+        <div class="gallery-heading">
+          <div>
+            <span>Dokumentasi Artikel</span>
+            <small>3 gambar • klik gambar untuk memperbesar</small>
+          </div>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"></rect><circle cx="9" cy="10" r="2"></circle><path d="m4 17 5-4 3 3 3-2 5 4"></path></svg>
+        </div>
+        <div class="image-gallery">
+          <button class="gallery-item" type="button" data-full="publikasi artikel jurnal/2026/artikel ke-11/gambar ke-1.png" aria-label="Perbesar gambar ke-1 artikel ke-11">
+            <img src="publikasi artikel jurnal/2026/artikel ke-11/gambar ke-1.png" alt="Gambar ke-1 untuk artikel FUZZY LOGIC APPROACH TO FOREST FIRE RISK ASSESSMENT IN TANJUNG PUTTING NATIONAL PARK" loading="lazy" onerror="this.closest('.gallery-item').classList.add('image-missing'); this.style.display='none';">
+            <span class="missing-label">Gambar ke-1<small>Pastikan file tersedia pada folder artikel ke-11</small></span>
+            <span class="zoom-hint" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path><path d="M11 8v6M8 11h6"></path></svg>
+            </span>
+          </button>
+          <button class="gallery-item" type="button" data-full="publikasi artikel jurnal/2026/artikel ke-11/gambar ke-2.png" aria-label="Perbesar gambar ke-2 artikel ke-11">
+            <img src="publikasi artikel jurnal/2026/artikel ke-11/gambar ke-2.png" alt="Gambar ke-2 untuk artikel FUZZY LOGIC APPROACH TO FOREST FIRE RISK ASSESSMENT IN TANJUNG PUTTING NATIONAL PARK" loading="lazy" onerror="this.closest('.gallery-item').classList.add('image-missing'); this.style.display='none';">
+            <span class="missing-label">Gambar ke-2<small>Pastikan file tersedia pada folder artikel ke-11</small></span>
+            <span class="zoom-hint" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path><path d="M11 8v6M8 11h6"></path></svg>
+            </span>
+          </button>
+          <button class="gallery-item" type="button" data-full="publikasi artikel jurnal/2026/artikel ke-11/gambar ke-3.png" aria-label="Perbesar gambar ke-3 artikel ke-11">
+            <img src="publikasi artikel jurnal/2026/artikel ke-11/gambar ke-3.png" alt="Gambar ke-3 untuk artikel FUZZY LOGIC APPROACH TO FOREST FIRE RISK ASSESSMENT IN TANJUNG PUTTING NATIONAL PARK" loading="lazy" onerror="this.closest('.gallery-item').classList.add('image-missing'); this.style.display='none';">
+            <span class="missing-label">Gambar ke-3<small>Pastikan file tersedia pada folder artikel ke-11</small></span>
+            <span class="zoom-hint" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path><path d="M11 8v6M8 11h6"></path></svg>
+            </span>
+          </button>
+        </div>
+
+        <div class="card-actions">
+          <a class="action-btn primary" href="https://doi.org/10.30598/barekengvol20iss2pp" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 5h5v5"></path><path d="m10 14 9-9"></path><path d="M19 13v6H5V5h6"></path></svg>
+            Sumber Artikel
+          </a>
+          <a class="action-btn scopus" href="https://www.scopus.com/pages/publications/105029164760?origin=resultslist" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v14H4z"></path><path d="M8 9h8M8 13h5"></path></svg>
+            Sumber Scopus
+          </a>
+          <a class="action-btn neutral" href="https://www.scimagojr.com/journalsearch.php?q=21101272725&amp;tip=sid&amp;clean=0" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V9M10 19V5M16 19v-7M22 19H2"></path></svg>
+            Scimago
+          </a>
+        </div>
+      </article>
+
+      <article class="publication-card" data-search="green infrastructure vulnerability and regional poverty reduction: new sustainable development recommendations based on a spatial clustering approach journal of poverty bagus sumargo, robert kurniawan, bahrul ilmi nasution, aldi firmansyah, bagaskoro cahyo laksono, prana ugiana gio">
+        <div class="card-topline">
+          <div class="number-badge">12</div>
+          <div class="meta-badges">
+            <span class="year-badge">2026</span>
+            <span class="scopus-badge">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"></path></svg>
+              Scopus
+            </span>
+          </div>
+        </div>
+
+        <div class="journal-label">Journal of Poverty</div>
+        <h2 class="article-title">Green Infrastructure Vulnerability and Regional Poverty Reduction: New Sustainable Development Recommendations Based on a Spatial Clustering Approach</h2>
+
+        <div class="author-block">
+          <div class="info-label">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"></circle><path d="M3.5 19c.7-4 2.6-6 5.5-6s4.8 2 5.5 6"></path><path d="M16 8h5M18.5 5.5v5"></path></svg>
+            Author
+          </div>
+          <p>Bagus Sumargo, Robert Kurniawan, Bahrul Ilmi Nasution, Aldi Firmansyah, Bagaskoro Cahyo Laksono, <strong class="author-highlight">Prana Ugiana Gio</strong></p>
+        </div>
+
+        <div class="facts-grid">
+          <div class="fact-box">
+            <span>Author Prana Ugiana Gio</span>
+            <strong>Posisi ke-6</strong>
+          </div>
+          <div class="fact-box">
+            <span>Terindeks Scopus</span>
+            <strong class="yes-text">Ya</strong>
+          </div>
+          <div class="fact-box">
+            <span>Tahun</span>
+            <strong>2026</strong>
+          </div>
+        </div>
+
+        <div class="gallery-heading">
+          <div>
+            <span>Dokumentasi Artikel</span>
+            <small>3 gambar • klik gambar untuk memperbesar</small>
+          </div>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"></rect><circle cx="9" cy="10" r="2"></circle><path d="m4 17 5-4 3 3 3-2 5 4"></path></svg>
+        </div>
+        <div class="image-gallery">
+          <button class="gallery-item" type="button" data-full="publikasi artikel jurnal/2026/artikel ke-12/gambar ke-1.png" aria-label="Perbesar gambar ke-1 artikel ke-12">
+            <img src="publikasi artikel jurnal/2026/artikel ke-12/gambar ke-1.png" alt="Gambar ke-1 untuk artikel Green Infrastructure Vulnerability and Regional Poverty Reduction: New Sustainable Development Recommendations Based on a Spatial Clustering Approach" loading="lazy" onerror="this.closest('.gallery-item').classList.add('image-missing'); this.style.display='none';">
+            <span class="missing-label">Gambar ke-1<small>Pastikan file tersedia pada folder artikel ke-12</small></span>
+            <span class="zoom-hint" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path><path d="M11 8v6M8 11h6"></path></svg>
+            </span>
+          </button>
+          <button class="gallery-item" type="button" data-full="publikasi artikel jurnal/2026/artikel ke-12/gambar ke-2.png" aria-label="Perbesar gambar ke-2 artikel ke-12">
+            <img src="publikasi artikel jurnal/2026/artikel ke-12/gambar ke-2.png" alt="Gambar ke-2 untuk artikel Green Infrastructure Vulnerability and Regional Poverty Reduction: New Sustainable Development Recommendations Based on a Spatial Clustering Approach" loading="lazy" onerror="this.closest('.gallery-item').classList.add('image-missing'); this.style.display='none';">
+            <span class="missing-label">Gambar ke-2<small>Pastikan file tersedia pada folder artikel ke-12</small></span>
+            <span class="zoom-hint" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path><path d="M11 8v6M8 11h6"></path></svg>
+            </span>
+          </button>
+          <button class="gallery-item" type="button" data-full="publikasi artikel jurnal/2026/artikel ke-12/gambar ke-3.png" aria-label="Perbesar gambar ke-3 artikel ke-12">
+            <img src="publikasi artikel jurnal/2026/artikel ke-12/gambar ke-3.png" alt="Gambar ke-3 untuk artikel Green Infrastructure Vulnerability and Regional Poverty Reduction: New Sustainable Development Recommendations Based on a Spatial Clustering Approach" loading="lazy" onerror="this.closest('.gallery-item').classList.add('image-missing'); this.style.display='none';">
+            <span class="missing-label">Gambar ke-3<small>Pastikan file tersedia pada folder artikel ke-12</small></span>
+            <span class="zoom-hint" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path><path d="M11 8v6M8 11h6"></path></svg>
+            </span>
+          </button>
+        </div>
+
+        <div class="card-actions">
+          <a class="action-btn primary" href="https://www.tandfonline.com/doi/full/10.1080/10875549.2024.2379769" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 5h5v5"></path><path d="m10 14 9-9"></path><path d="M19 13v6H5V5h6"></path></svg>
+            Sumber Artikel
+          </a>
+          <a class="action-btn scopus" href="https://www.scopus.com/pages/publications/85198744110?origin=resultslist" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v14H4z"></path><path d="M8 9h8M8 13h5"></path></svg>
+            Sumber Scopus
+          </a>
+          <a class="action-btn neutral" href="https://www.scimagojr.com/journalsearch.php?q=4700152755&amp;tip=sid&amp;clean=0" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V9M10 19V5M16 19v-7M22 19H2"></path></svg>
+            Scimago
+          </a>
+        </div>
+      </article>
+
+      <article class="publication-card" data-search="paving the path to poverty alleviation: how strategic infrastructure enhancement and controlled sprawl can reshape urban development journal of poverty elfina dea rosalita, robert kurniawan, ernawati pasaribu, prana ugiana gio, hikmah, sri kuswantono wongsonadi">
+        <div class="card-topline">
+          <div class="number-badge">13</div>
+          <div class="meta-badges">
+            <span class="year-badge">2026</span>
+            <span class="scopus-badge">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"></path></svg>
+              Scopus
+            </span>
+          </div>
+        </div>
+
+        <div class="journal-label">Journal of Poverty</div>
+        <h2 class="article-title">Paving the Path to Poverty Alleviation: How Strategic Infrastructure Enhancement and Controlled Sprawl Can Reshape Urban Development</h2>
+
+        <div class="author-block">
+          <div class="info-label">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"></circle><path d="M3.5 19c.7-4 2.6-6 5.5-6s4.8 2 5.5 6"></path><path d="M16 8h5M18.5 5.5v5"></path></svg>
+            Author
+          </div>
+          <p>Elfina Dea Rosalita, Robert Kurniawan, Ernawati Pasaribu, <strong class="author-highlight">Prana Ugiana Gio</strong>, Hikmah, Sri Kuswantono Wongsonadi</p>
+        </div>
+
+        <div class="facts-grid">
+          <div class="fact-box">
+            <span>Author Prana Ugiana Gio</span>
+            <strong>Posisi ke-4</strong>
+          </div>
+          <div class="fact-box">
+            <span>Terindeks Scopus</span>
+            <strong class="yes-text">Ya</strong>
+          </div>
+          <div class="fact-box">
+            <span>Tahun</span>
+            <strong>2026</strong>
+          </div>
+        </div>
+
+        <div class="gallery-heading">
+          <div>
+            <span>Dokumentasi Artikel</span>
+            <small>3 gambar • klik gambar untuk memperbesar</small>
+          </div>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"></rect><circle cx="9" cy="10" r="2"></circle><path d="m4 17 5-4 3 3 3-2 5 4"></path></svg>
+        </div>
+        <div class="image-gallery">
+          <button class="gallery-item" type="button" data-full="publikasi artikel jurnal/2026/artikel ke-13/gambar ke-1.png" aria-label="Perbesar gambar ke-1 artikel ke-13">
+            <img src="publikasi artikel jurnal/2026/artikel ke-13/gambar ke-1.png" alt="Gambar ke-1 untuk artikel Paving the Path to Poverty Alleviation: How Strategic Infrastructure Enhancement and Controlled Sprawl Can Reshape Urban Development" loading="lazy" onerror="this.closest('.gallery-item').classList.add('image-missing'); this.style.display='none';">
+            <span class="missing-label">Gambar ke-1<small>Pastikan file tersedia pada folder artikel ke-13</small></span>
+            <span class="zoom-hint" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path><path d="M11 8v6M8 11h6"></path></svg>
+            </span>
+          </button>
+          <button class="gallery-item" type="button" data-full="publikasi artikel jurnal/2026/artikel ke-13/gambar ke-2.png" aria-label="Perbesar gambar ke-2 artikel ke-13">
+            <img src="publikasi artikel jurnal/2026/artikel ke-13/gambar ke-2.png" alt="Gambar ke-2 untuk artikel Paving the Path to Poverty Alleviation: How Strategic Infrastructure Enhancement and Controlled Sprawl Can Reshape Urban Development" loading="lazy" onerror="this.closest('.gallery-item').classList.add('image-missing'); this.style.display='none';">
+            <span class="missing-label">Gambar ke-2<small>Pastikan file tersedia pada folder artikel ke-13</small></span>
+            <span class="zoom-hint" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path><path d="M11 8v6M8 11h6"></path></svg>
+            </span>
+          </button>
+          <button class="gallery-item" type="button" data-full="publikasi artikel jurnal/2026/artikel ke-13/gambar ke-3.png" aria-label="Perbesar gambar ke-3 artikel ke-13">
+            <img src="publikasi artikel jurnal/2026/artikel ke-13/gambar ke-3.png" alt="Gambar ke-3 untuk artikel Paving the Path to Poverty Alleviation: How Strategic Infrastructure Enhancement and Controlled Sprawl Can Reshape Urban Development" loading="lazy" onerror="this.closest('.gallery-item').classList.add('image-missing'); this.style.display='none';">
+            <span class="missing-label">Gambar ke-3<small>Pastikan file tersedia pada folder artikel ke-13</small></span>
+            <span class="zoom-hint" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path><path d="M11 8v6M8 11h6"></path></svg>
+            </span>
+          </button>
+        </div>
+
+        <div class="card-actions">
+          <a class="action-btn primary" href="https://www.tandfonline.com/doi/full/10.1080/10875549.2026.2671657" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 5h5v5"></path><path d="m10 14 9-9"></path><path d="M19 13v6H5V5h6"></path></svg>
+            Sumber Artikel
+          </a>
+          <a class="action-btn scopus" href="https://www.scopus.com/pages/publications/105038143406?origin=resultslist" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v14H4z"></path><path d="M8 9h8M8 13h5"></path></svg>
+            Sumber Scopus
+          </a>
+          <a class="action-btn neutral" href="https://www.scimagojr.com/journalsearch.php?q=4700152755&amp;tip=sid&amp;clean=0" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V9M10 19V5M16 19v-7M22 19H2"></path></svg>
+            Scimago
+          </a>
+        </div>
+      </article>
+
+        </div>
+
+        <div id="noResults">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg>
+          <h3>Publikasi tidak ditemukan</h3>
+          <p>Coba gunakan kata kunci lain pada kotak pencarian.</p>
+        </div>
+
+        <div class="source-note">
+          <strong>Catatan:</strong> Tautan pada tombol “Sumber Artikel”, “Sumber Scopus”, dan “Scimago” akan membuka halaman eksternal pada tab baru. Gambar publikasi menggunakan struktur folder <strong>publikasi artikel jurnal → 2026 → artikel ke-[1–13] → gambar ke-[1–3].png</strong>.
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div>
+        <div class="footer-name">Prana Ugiana Gio</div>
+        <div class="footer-role">Founder &amp; CEO STATCAL • Creator of STATKOMAT</div>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">HOME</a>
+        <a href="https://statcal.com/" target="_blank" rel="noopener noreferrer">STATCAL</a>
+        <a href="https://www.youtube.com/@STATKOMAT" target="_blank" rel="noopener noreferrer">STATKOMAT</a>
+        <a href="https://pranaugi.com/" target="_blank" rel="noopener noreferrer">PRANA UGI</a>
+        <a href="#">Kembali ke Atas ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Pratinjau gambar publikasi">
+    <button class="lightbox-close" id="lightboxClose" type="button" aria-label="Tutup">×</button>
+    <img id="lightboxImage" src="" alt="Pratinjau gambar publikasi">
+  </div>
+
+  <script>
+    const searchInput = document.getElementById('publicationSearch');
+    const cards = Array.from(document.querySelectorAll('.publication-card'));
+    const resultCount = document.getElementById('resultCount');
+    const noResults = document.getElementById('noResults');
+
+    function filterPublications() {
+      const q = searchInput.value.trim().toLowerCase();
+      let visible = 0;
+      cards.forEach(card => {
+        const match = card.dataset.search.includes(q);
+        card.style.display = match ? '' : 'none';
+        if (match) visible++;
+      });
+      resultCount.textContent = visible + ' Artikel';
+      noResults.style.display = visible ? 'none' : 'block';
+    }
+    searchInput.addEventListener('input', filterPublications);
+
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImage = document.getElementById('lightboxImage');
+    const lightboxClose = document.getElementById('lightboxClose');
+
+    document.querySelectorAll('.gallery-item').forEach(button => {
+      button.addEventListener('click', () => {
+        if (button.classList.contains('image-missing')) return;
+        lightboxImage.src = button.dataset.full;
+        lightbox.classList.add('open');
+        document.body.classList.add('modal-open');
+      });
+    });
+
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      document.body.classList.remove('modal-open');
+      lightboxImage.src = '';
+    }
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+  </script>
+</body>
+</html>

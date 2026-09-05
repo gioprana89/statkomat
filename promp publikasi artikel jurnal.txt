@@ -1,0 +1,5 @@
+folder "publikasi artikel jurnal", masuk ke folder "2026", masuk ke-folder "artikel ke-1" nama gambarnya "gambar ke-1.png", "gambar ke-2.png" dan "gambar ke-3.png"
+
+
+
+
